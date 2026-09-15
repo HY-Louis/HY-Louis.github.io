@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Louis 的学年规划 · 2026—2027</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-field">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- ============ 顶栏 ============ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="dot"></span>Louis</a>
+    <nav class="pages" aria-label="页面切换">
+      <a href="index.html" class="on">规划</a>
+      <a href="tools.html">工具</a>
+    </nav>
+    <nav class="months" aria-label="月份跳转">
+      <a href="#m09">09月</a>
+      <a href="#m10">10月</a>
+      <a href="#m11">11月</a>
+      <a href="#m12">12月</a>
+      <a href="#m01">01月</a>
+      <a href="#m02">02月</a>
+      <a href="#m03">03月</a>
+    </nav>
+    <div class="tools">
+      <div class="overall">
+        <span>总进度</span>
+        <div class="overall-bar"><i id="overallBar"></i></div>
+        <b id="overallText">0 / 0</b>
+      </div>
+      <button class="iconbtn" id="themeBtn" title="切换深色 / 浅色模式" aria-label="切换深色或浅色模式">☀</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="reveal">
+      <div class="eyebrow">Louis · Academic Year 2026—2027</div>
+      <h1>Louis 的<br><em>学年规划</em></h1>
+      <p>先稳住课程与基础，再把知识做成项目、题目与作品。每一门课都配好了直达链接，学完点一下左边的方框，进度会自动记住。</p>
+    </div>
+    <div class="stamp reveal has-tilt tilt" data-tilt>
+      <div class="sheen"></div>
+      <div class="tilt-inner">
+        <strong>9.14 → 3月后</strong>
+        <small>起步：2026 年 9 月 14 日<br>计划可随时补充整改</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 五条主线 ============ -->
+  <section class="section">
+    <h2 class="reveal">今年的五条主线</h2>
+    <p class="section-sub reveal">月度任务是执行，这五条是判断「这一年过得好不好」的标准。</p>
+    <div class="pillars">
+      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
+        <div class="sheen"></div>
+        <div class="tilt-inner"><b>成绩</b><span>第一学期 GPA 刷到 <strong>3.0+</strong>，第二学期后到 <strong>3.2+</strong></span></div>
+      </div>
+      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
+        <div class="sheen"></div>
+        <div class="tilt-inner"><b>数学</b><span>张宇 30 讲起步，线代基础 + 强化全部听完，配套 1000 题</span></div>
+      </div>
+      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
+        <div class="sheen"></div>
+        <div class="tilt-inner"><b>计算机基础</b><span>操作系统、计算机组成原理完成核心章节，能写基础题与典型代码题</span></div>
+      </div>
+      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
+        <div class="sheen"></div>
+        <div class="tilt-inner"><b>工程能力</b><span>Java 全路线打穿，苍穹外卖手敲掌握，做出可运行的项目</span></div>
+      </div>
+      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
+        <div class="sheen"></div>
+        <div class="tilt-inner"><b>科研</b><span>导师确认方向后，争取完成一篇 CCF-C（如 IJCNN）投稿</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 月度路线 ============ -->
+  <section class="section">
+    <h2 class="reveal">月度路线</h2>
+    <p class="section-sub reveal">点方框打勾 → 自动保存到这台电脑的浏览器里，关掉网页再打开进度还在。</p>
+
+    <div class="month-list">
+
+    <!-- ---- 09月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m09" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">09</div>
+        <div>
+          <h3 class="month-title">基础启动</h3>
+          <p class="month-tagline">九月 · 把学习的地基搭起来</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="JavaSE 上部">
+          <div>
+            <div class="course-line">
+              <span class="course-name">JavaSE（黑马 · 上部）</span>
+              <a class="go" href="https://www.bilibili.com/video/BV17F411T7Ao" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>从 <span class="range must">第1节</span> 一直学到 <span class="range must">184节</span>，<span class="range skip">185-188 节直接跳</span>（讲的是集合遍历，后面开发只用增强 for 和 stream 流）。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="JavaSE 下部">
+          <div>
+            <div class="course-line">
+              <span class="course-name">JavaSE（黑马 · 下部）</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1yW4y1Y7Ms" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>上部学完接着看，两面一起把 Java 基础语法、集合、IO、多线程过一遍。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="操作系统">
+          <div>
+            <div class="course-line">
+              <span class="course-name">操作系统</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1YE411D7nH" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>本学期贯穿项目标：完成核心章节，能独立写基础题和典型代码题。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="计算机组成原理">
+          <div>
+            <div class="course-line">
+              <span class="course-name">计算机组成原理</span>
+              <a class="go" href="https://www.bilibili.com/video/BV18TZuBQE5q" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>和操作系统并列的两门硬课之一，跟着课表节奏走，期末前要能自己讲清核心章节。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="腾讯青科实训营">
+          <div>
+            <div class="course-line">
+              <span class="course-name">腾讯青科实训营：AI 时代，人人都学点产品设计</span>
+              <span class="chip later">补充学习</span>
+            </div>
+            <div class="notes">
+              <p>轻量补充课，在腾讯青科实训营里找这门课。当调剂看，别压缩上面几门主课的时间。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="张宇30讲启动">
+          <div>
+            <div class="course-line">
+              <span class="course-name">张宇 30 讲 · 启动</span>
+              <span class="chip weekend">周末 · 每天 3 小时</span>
+            </div>
+            <div class="notes">
+              <p>从 9 月 14 日开始，一直持续到 <strong>2027 年 2 月</strong>：把张宇线代基础 + 强化听完，并做配套 <strong>1000 题</strong>。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ---- 10月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m10" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">10</div>
+        <div>
+          <h3 class="month-title">Java 路线推进</h3>
+          <p class="month-tagline">十月 · 快速打穿基础模块，同时接住期中</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="MySQL">
+          <div>
+            <div class="course-line">
+              <span class="course-name">MySQL 数据库</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1Kr4y1i7ru" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>总共给自己 <strong>5 天</strong>，<span class="range must">只看前 50 讲</span>。剩下的索引、事务、隔离机制这些高级内容<span class="range skip">不用现在花时间</span>，面试前背八股即可。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="JDBC">
+          <div>
+            <div class="course-line">
+              <span class="course-name">JDBC</span>
+              <span class="chip later">半天学完</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1s3411K7jH" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>只用半天。重点是理解「Java 代码怎么跟数据库说上话」，不用背 API。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="JavaWeb">
+          <div>
+            <div class="course-line">
+              <span class="course-name">JavaWeb</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1m84y1w7Tb" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p><span class="range skip">第 5-30 讲跳过</span>（前端基础语法部分），直接进后端核心内容。这门课是从「会写 Java」到「会写网站」的分水岭。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="Git">
+          <div>
+            <div class="course-line">
+              <span class="course-name">Git 版本控制</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1pX4y1S7Dq" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p><strong>一定要动手实践</strong>，光看不练等于没学。Git 是给代码存档和写「后悔药」的工具，以后所有项目都要用。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="Linux 基本命令">
+          <div>
+            <div class="course-line">
+              <span class="course-name">Linux 基本命令</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1cq421w72c" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>服务器上跑的东西基本都是 Linux。学会在命令行里操作文件、装软件就够了。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="Docker">
+          <div>
+            <div class="course-line">
+              <span class="course-name">Docker 容器</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1HP4118797" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>Docker 相当于把软件和它的运行环境一起装进一个「集装箱」，换台电脑也能原样跑起来，不用再折腾环境。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="SpringBoot">
+          <div>
+            <div class="course-line">
+              <span class="course-name">SpringBoot</span>
+              <span class="chip keep">Java 后端核心</span>
+              <a class="go" href="https://www.bilibili.com/video/BV15b4y1a7yG" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>SpringBoot 是 Java 做后端最主流的框架，11 月的苍穹外卖项目就建立在它上面。这门要学扎实。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="LeetCode 灵神题单">
+          <div>
+            <div class="course-line">
+              <span class="course-name">LeetCode · 灵神题单</span>
+              <span class="chip keep">每日刷</span>
+              <a class="go" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">打开题单</a>
+            </div>
+            <div class="notes">
+              <p>从 10 月开始每天刷，一直保持到学年结束。<strong>保持手感比单次刷多更重要。</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="期中复习">
+          <div>
+            <div class="course-line">
+              <span class="course-name">期中考试复习</span>
+              <span class="chip exam">第 6、7 周</span>
+            </div>
+            <div class="notes">
+              <p><strong>第 6、7 周</strong>要开始复习期中考试——到这两周就把上面的课往后放，先保成绩（这学期 GPA 目标是 3.0+）。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="操作系统计组持续">
+          <div>
+            <div class="course-line">
+              <span class="course-name">操作系统 · 计算机组成原理</span>
+              <span class="chip keep">持续</span>
+            </div>
+            <div class="notes">
+              <p>两门硬课不停，跟着课表进度走，别攒着。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-foot">
+          <b>本月节奏：</b>这是一个「广撒网」的月份，七门课压在一起。如果时间不够，优先级是 <strong>MySQL → JavaWeb → SpringBoot → Git</strong>，Linux 和 Docker 可以稍微往后挪一点，但别整个跳过。
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- 11月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m11" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">11</div>
+        <div>
+          <h3 class="month-title">项目与报名</h3>
+          <p class="month-tagline">十一月 · 把知识放进真实项目，同时把竞赛名报上</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="苍穹外卖">
+          <div>
+            <div class="course-line">
+              <span class="course-name">苍穹外卖 · 项目实战</span>
+              <span class="chip keep">本月重点项目</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1TP411v7v6" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p><span class="range must">第 1-170 讲必须看</span>，后面 30 讲是前端，跳过。</p>
+            </div>
+            <div class="warn"><b>硬要求：</b>看完需要<strong>手敲掌握</strong>——不能只跟着视频看，代码必须自己敲一遍跑通。这个项目是你简历上的第一个作品。</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="Redis">
+          <div>
+            <div class="course-line">
+              <span class="course-name">Redis 缓存</span>
+              <a class="go" href="https://www.bilibili.com/video/BV1cr4y1671t" target="_blank" rel="noopener">打开视频</a>
+            </div>
+            <div class="notes">
+              <p>Redis 是把常用数据放在内存里的「高速缓存」，用来给数据库减压。苍穹外卖里刚好用到，学完就能对照着理解。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="四级真题">
+          <div>
+            <div class="course-line">
+              <span class="course-name">四级真题训练</span>
+              <span class="chip exam">一周两套</span>
+            </div>
+            <div class="notes">
+              <p>开始刷四级真题，<strong>一周两套</strong>，本月只做阅读等内容，<strong>作文和听力先放一放</strong>（12 月再攻）。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="美赛蓝桥杯报名">
+          <div>
+            <div class="course-line">
+              <span class="course-name">美赛报名 · 蓝桥杯报名</span>
+              <span class="chip exam">别错过截止</span>
+            </div>
+            <div class="notes">
+              <p>两件事都是「错过就等一年」的，本月内办完。美赛是明年 2 月比赛，蓝桥杯是明年 3 月。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="LeetCode 持续">
+          <div>
+            <div class="course-line">
+              <span class="course-name">LeetCode · 灵神题单</span>
+              <span class="chip keep">持续</span>
+              <a class="go" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">打开题单</a>
+            </div>
+            <div class="notes"><p>项目再忙，每天也留一点题量。</p></div>
+          </div>
+        </div>
+
+        <div class="month-foot">
+          <b>本月节奏：</b>苍穹外卖是重点，占了大部分时间；其他任务是插入式的。四级一周两套要固定成习惯，别堆到月底。
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- 12月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m12" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">12</div>
+        <div>
+          <h3 class="month-title">四级与期末</h3>
+          <p class="month-tagline">十二月 · 在考试节点前收束</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="四级听力作文">
+          <div>
+            <div class="course-line">
+              <span class="course-name">四级听力 · 作文模板</span>
+              <span class="chip exam">本月重点</span>
+            </div>
+            <div class="notes">
+              <p>11 月做阅读，<strong>12 月专攻听力和作文</strong>：练听力、背作文模板，<strong>考前最后刷三套完整真题</strong>。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="期末复习准备">
+          <div>
+            <div class="course-line">
+              <span class="course-name">期末考试复习</span>
+              <span class="chip exam">提前一个月开始</span>
+            </div>
+            <div class="notes">
+              <p>需要<strong>提前一个月</strong>准备期末复习，<strong>优先注意高学分课程</strong>（高学分课程对 GPA 的影响最大，这直接关系到 3.0+ 的目标）。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="操作系统计组巩固">
+          <div>
+            <div class="course-line">
+              <span class="course-name">操作系统 · 计算机组成原理</span>
+              <span class="chip keep">持续巩固</span>
+            </div>
+            <div class="notes"><p>这两门也是期末要考的，巩固本身就是复习。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="LeetCode 12月">
+          <div>
+            <div class="course-line">
+              <span class="course-name">LeetCode 刷题</span>
+              <span class="chip keep">持续</span>
+              <a class="go" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">打开题单</a>
+            </div>
+            <div class="notes"><p>考试周可以降到每周几道，但别断。</p></div>
+          </div>
+        </div>
+
+        <div class="month-foot">
+          <b>本月节奏：</b>一切以「别挂科 + 四级过线」为先。新知识可以暂时停，复习不能停。
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- 01月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m01" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">01</div>
+        <div>
+          <h3 class="month-title">考试与投稿准备</h3>
+          <p class="month-tagline">一月 · 完成阶段性收束，接上科研线</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="期末考试">
+          <div>
+            <div class="course-line">
+              <span class="course-name">期末考试</span>
+              <span class="chip exam">本月上半场</span>
+            </div>
+            <div class="notes"><p>12 月开始准备的复习，在这里落地。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="论文投稿准备">
+          <div>
+            <div class="course-line">
+              <span class="course-name">论文投稿准备（目标 CCF-C）</span>
+              <span class="chip exam">看导师节点</span>
+            </div>
+            <div class="notes">
+              <p>在导师确认方向、题目和投稿要求后，争取完成一篇 CCF-C 论文投稿（如 IJCNN）。</p>
+            </div>
+            <div class="warn"><b>先核实再动手：</b>IJCNN 的分类、投稿类型和截止日期需要提前核实——这类会议的具体信息以官网为准，别按记忆里的时间准备。</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="美赛赛前准备">
+          <div>
+            <div class="course-line">
+              <span class="course-name">美赛赛前准备</span>
+              <span class="chip weekend">为 2 月比赛</span>
+            </div>
+            <div class="notes"><p>熟悉题型、分工、写作模板和常用工具，拉队友对一遍流程。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="基础课巩固 + 算法手感">
+          <div>
+            <div class="course-line">
+              <span class="course-name">操作系统 · 计组 · 算法手感</span>
+              <span class="chip keep">持续</span>
+            </div>
+            <div class="notes"><p>持续巩固操作系统与计算机组成原理，保持算法题手感，为 2 月美赛和 3 月蓝桥杯蓄力。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="张宇线代进行中">
+          <div>
+            <div class="course-line">
+              <span class="course-name">张宇线代基础 + 强化 · 1000 题</span>
+              <span class="chip weekend">周末 · 每天 3h</span>
+            </div>
+            <div class="notes">
+              <p>从 9.14 开始一直持续到 <strong>2027 年 2 月</strong>，这条线横跨整个寒假，别断。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ---- 02月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m02" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">02</div>
+        <div>
+          <h3 class="month-title">美赛与蓝桥杯</h3>
+          <p class="month-tagline">二月 · 进入竞赛阶段</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="美赛">
+          <div>
+            <div class="course-line">
+              <span class="course-name">美国大学生数学建模竞赛（美赛）</span>
+              <span class="chip exam">正式比赛</span>
+            </div>
+            <div class="notes"><p>1 月准备的东西在这里用上。比赛期间一切让路。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="蓝桥杯准备">
+          <div>
+            <div class="course-line">
+              <span class="course-name">蓝桥杯备战</span>
+              <span class="chip keep">洛谷 + 官网刷题</span>
+              <a class="go" href="https://www.luogu.com.cn/" target="_blank" rel="noopener">打开洛谷</a>
+              <a class="go" href="https://dasai.lanqiao.cn/" target="_blank" rel="noopener">蓝桥杯官网</a>
+            </div>
+            <div class="notes">
+              <p>在<strong>洛谷</strong>和<strong>蓝桥杯官网</strong>上刷题。蓝桥杯的题型偏基础和模板，把常见算法模板打熟就行。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="基础课持续">
+          <div>
+            <div class="course-line">
+              <span class="course-name">操作系统 · 计算机组成原理</span>
+              <span class="chip keep">持续巩固</span>
+            </div>
+            <div class="notes"><p>寒假也别断，开学后课会接着往上叠。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="张宇收尾">
+          <div>
+            <div class="course-line">
+              <span class="course-name">张宇 30 讲 · 线代基础 + 强化收尾</span>
+              <span class="chip weekend">周末 · 每天 3h</span>
+            </div>
+            <div class="notes"><p>按计划在 2 月把线代基础和强化听完，配套 1000 题同步做完。</p></div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ---- 03月 ---- -->
+    <article class="month-block reveal has-tilt tilt" id="m03" data-month data-tilt data-tilt-max="3">
+      <div class="sheen"></div>
+      <div class="month-head">
+        <div class="month-num">03</div>
+        <div>
+          <h3 class="month-title">新阶段开启</h3>
+          <p class="month-tagline">三月 · 比赛收尾，为下一步做选择</p>
+        </div>
+        <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
+      </div>
+      <div class="month-body">
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="蓝桥杯比赛">
+          <div>
+            <div class="course-line">
+              <span class="course-name">参加蓝桥杯</span>
+              <span class="chip exam">正式比赛</span>
+            </div>
+            <div class="notes"><p>2 月备战的结果。考完记得复盘错题。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="六级报名">
+          <div>
+            <div class="course-line">
+              <span class="course-name">六级报名</span>
+              <span class="chip exam">别错过截止</span>
+            </div>
+            <div class="notes"><p>四级一旦通过就顺势报六级，趁热打铁。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="计算机网络基础">
+          <div>
+            <div class="course-line">
+              <span class="course-name">计算机网络基础</span>
+              <span class="chip keep">新开的一门</span>
+            </div>
+            <div class="notes">
+              <p>开始学习计算机网络基础。计网是「面试八股」的常客，也是理解后端系统的前提。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="算法题巩固">
+          <div>
+            <div class="course-line">
+              <span class="course-name">算法题巩固</span>
+              <span class="chip keep">持续</span>
+              <a class="go" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">打开题单</a>
+            </div>
+            <div class="notes"><p>蓝桥杯考完不代表刷题结束，手感还得留着。</p></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" class="cb" aria-label="Agent 项目">
+          <div>
+            <div class="course-line">
+              <span class="course-name">Agent 项目</span>
+              <span class="chip later">3 月之后 · 视情况</span>
+            </div>
+            <div class="notes">
+              <p>3 月之后<strong>视情况</strong>准备 Agent 项目——先把前面几门课和比赛处理干净，再决定要不要启动。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-foot">
+          <b>三月是个分岔口：</b>比赛结束、六级报名、计网开新线，同时要判断 Agent 项目要不要做。到时候回头看这份规划，把这里改掉就行。
+        </div>
+      </div>
+    </article>
+
+    </div>
+  </section>
+
+  <!-- ============ 全年提醒 ============ -->
+  <div class="note-box reveal">
+    <b>全年提醒：</b>英语单词背记、运动、以及对 AI 行业的基本关注，贯穿全年不断线。<br>
+    论文投稿以导师确认的方向和真实截止时间为准；这份计划可以随时补充整改——直接在原计划书上改，然后告诉我，我同步更新到这一页。
+  </div>
+
+  <footer>
+    <span>Louis · Keep moving, keep making. · <a href="tools.html">学习工具 →</a></span>
+    <span>起步 2026.09.14 · <button class="reset" id="resetBtn">清空所有打勾</button></span>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'louis-plan-2026-progress';
+  var THEME_KEY = 'louis-plan-2026-theme';
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia('(max-width: 880px), (hover: none)').matches;
+
+  /* ---------- 1. 主题切换 ---------- */
+  var themeBtn = document.getElementById('themeBtn');
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.textContent = (t === 'dark') ? '☀' : '🌙';
+    try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+  }
+  var savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+  themeBtn.addEventListener('click', function () {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---------- 2. 打勾进度 ---------- */
+  var months = [].slice.call(document.querySelectorAll('[data-month]'));
+  var allBoxes = [];
+  months.forEach(function (monthEl) {
+    [].forEach.call(monthEl.querySelectorAll('.cb'), function (cb, i) {
+      cb.dataset.uid = monthEl.id + '-' + i;
+      allBoxes.push(cb);
+    });
+  });
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  var state = loadState();
+
+  function refresh() {
+    var doneTotal = 0;
+    months.forEach(function (monthEl) {
+      var boxes = monthEl.querySelectorAll('.cb');
+      var done = 0;
+      [].forEach.call(boxes, function (cb) {
+        var on = !!state[cb.dataset.uid];
+        cb.checked = on;
+        cb.closest('.item').classList.toggle('checked', on);
+        if (on) done++;
+      });
+      var pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+      var bar = monthEl.querySelector('.month-prog .bar i');
+      var txt = monthEl.querySelector('.month-prog span');
+      if (bar) bar.style.width = pct + '%';
+      if (txt) txt.textContent = done + ' / ' + boxes.length;
+      doneTotal += done;
+    });
+    var opct = allBoxes.length ? Math.round(doneTotal / allBoxes.length * 100) : 0;
+    document.getElementById('overallBar').style.width = opct + '%';
+    document.getElementById('overallText').textContent = doneTotal + ' / ' + allBoxes.length;
+  }
+
+  allBoxes.forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      if (cb.checked) { state[cb.dataset.uid] = 1; } else { delete state[cb.dataset.uid]; }
+      saveState(state);
+      refresh();
+    });
+  });
+  refresh();
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    if (confirm('确定清空所有月份的打勾记录吗？这个操作不能撤销。')) {
+      state = {};
+      saveState(state);
+      refresh();
+    }
+  });
+
+  /* ---------- 3. 3D 倾斜跟随鼠标 ---------- */
+  if (!isTouch && !reduceMotion) {
+    [].forEach.call(document.querySelectorAll('[data-tilt]'), function (el) {
+      var max = parseFloat(el.dataset.tiltMax || '9');
+      var raf = null;
+
+      function onMove(e) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;
+          var py = (e.clientY - r.top) / r.height;
+          var rx = (0.5 - py) * max * 2;
+          var ry = (px - 0.5) * max * 2;
+          el.style.transform =
+            'perspective(1100px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateZ(12px)';
+          el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+          el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        });
+      }
+      function onLeave() {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        el.style.transform = '';
+      }
+
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+    });
+  }
+
+  /* ---------- 4. 滚动淡入 ---------- */
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          ro.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
+
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 45, 260) + 'ms';
+      ro.observe(el);
+    });
+  }
+
+  /* ---------- 5. 顶栏高亮当前月份 ---------- */
+  var navLinks = [].slice.call(document.querySelectorAll('.months a'));
+  var navMap = {};
+  navLinks.forEach(function (a) { navMap[a.getAttribute('href').slice(1)] = a; });
+
+  if ('IntersectionObserver' in window) {
+    var watched = months;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var link = navMap[en.target.id];
+        if (!link) return;
+        if (en.isIntersecting) {
+          navLinks.forEach(function (a) { a.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-88px 0px -68% 0px', threshold: 0 });
+    watched.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

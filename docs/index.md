@@ -11,7 +11,8 @@ hero:
       link: /blog/
     - theme: alt
       text: 我的学年规划
-      link: /plan/
+      link: /plan/index.html
+      target: _blank
     - theme: alt
       text: 关于我
       link: /about/

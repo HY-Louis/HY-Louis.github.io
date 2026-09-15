@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>学习工具 · Louis</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-field">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- ============ 顶栏 ============ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="dot"></span>Louis</a>
+    <nav class="pages" aria-label="页面切换">
+      <a href="index.html">规划</a>
+      <a href="tools.html" class="on">工具</a>
+    </nav>
+    <nav class="months" aria-label="分类跳转">
+      <a href="#ai">AI 工具</a>
+      <a href="#oj">刷题平台</a>
+      <a href="#dev">开发工具</a>
+      <a href="#courses">课程视频</a>
+      <a href="#exam">英语与竞赛</a>
+    </nav>
+    <div class="tools">
+      <button class="iconbtn" id="themeBtn" title="切换深色 / 浅色模式" aria-label="切换深色或浅色模式">☀</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero compact">
+    <div class="reveal">
+      <div class="eyebrow">Louis · Toolbox</div>
+      <h1>学习<em>工具箱</em></h1>
+      <p>常用的 AI 工具、刷题平台、开发工具、课程视频和考试入口，全部官网直达，不用再搜。</p>
+    </div>
+    <div class="stamp reveal has-tilt tilt" data-tilt>
+      <div class="sheen"></div>
+      <div class="tilt-inner">
+        <strong>5 类 · <span id="totalCount">0</span> 个入口</strong>
+        <small>AI 工具 · 刷题 · 开发 · 课程 · 考试竞赛<br>随时补充</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI 工具 ============ -->
+  <section class="cat" id="ai" data-cat>
+    <div class="cat-head reveal">
+      <h2>AI 工具</h2>
+      <p>写代码、查资料、改文章都用得上。同一个问题多问两个模型，答案更稳。</p>
+      <span class="count"></span>
+    </div>
+    <div class="tool-grid">
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag">AGENT</span>
+          <b>Hermes Agent</b>
+          <span>Nous Research 出的开源 AI Agent 框架。想搞清楚一个 Agent 是怎么跑起来的，可以从它入手。</span>
+          <span class="host">hermes-agent.nousresearch.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.deepseek.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag free">免费</span>
+          <b>DeepSeek</b>
+          <span>国产大模型，网页版和 App 免费。写代码、讲概念都很顺手，国内直连不用折腾网络。</span>
+          <span class="host">deepseek.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag">CLI</span>
+          <b>Claude Code</b>
+          <span>Anthropic 的命令行编程助手，直接在终端里读写你的项目文件。这个网站就是用它做出来的。</span>
+          <span class="host">claude.com/claude-code</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://claude.ai/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>Claude</b>
+          <span>Anthropic 的对话版。长文本理解和代码解释强，读论文、理清一门课的脉络时好用。</span>
+          <span class="host">claude.ai</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://openai.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>OpenAI</b>
+          <span>ChatGPT 背后的公司。官网看模型发布和 API 文档，日常对话直接去 chatgpt.com。</span>
+          <span class="host">openai.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://qoder.com.cn/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag">IDE</span>
+          <b>Qoder CN</b>
+          <span>阿里出的 AI 编程 IDE 中国站。能整体理解代码库，把复杂任务委托给 AI 代理执行。</span>
+          <span class="host">qoder.com.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://cursor.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag">IDE</span>
+          <b>Cursor</b>
+          <span>目前最流行的 AI 编辑器，基于 VS Code 改造。和 Qoder 是同类，二选一用熟就行。</span>
+          <span class="host">cursor.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://github.com/features/copilot" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag free">学生免费</span>
+          <b>GitHub Copilot</b>
+          <span>装在 IDEA / VS Code 里的代码补全。用学校邮箱认证 GitHub 学生包可以免费用。</span>
+          <span class="host">github.com/features/copilot</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://gemini.google.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>Gemini</b>
+          <span>Google 的模型。多模态和长上下文强，看图讲题、整理一整本 PDF 讲义时可以用。</span>
+          <span class="host">gemini.google.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.kimi.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag free">免费</span>
+          <b>Kimi</b>
+          <span>月之暗面的模型，长文档能力好。丢一篇论文进去让它先讲一遍，再自己精读。</span>
+          <span class="host">kimi.com</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 刷题平台 ============ -->
+  <section class="cat" id="oj" data-cat>
+    <div class="cat-head reveal">
+      <h2>刷题平台</h2>
+      <p>灵神题单定顺序，LeetCode 做题，洛谷和蓝桥杯官网备赛。</p>
+      <span class="count"></span>
+    </div>
+    <div class="tool-grid">
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag hot">推荐</span>
+          <b>灵神题单 · 如何科学刷题</b>
+          <span>LeetCode 中文社区公认最系统的刷题顺序，按专题递进，不用自己瞎挑题。</span>
+          <span class="host">leetcode.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://leetcode.cn/problemset/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>LeetCode 题库</b>
+          <span>按标签和难度筛题，刷题主战场。</span>
+          <span class="host">leetcode.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.luogu.com.cn/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>洛谷</b>
+          <span>国内算法竞赛刷题站，蓝桥杯备战主要靠它。</span>
+          <span class="host">luogu.com.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://dasai.lanqiao.cn/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>蓝桥杯官网</b>
+          <span>报名、赛程、真题和模拟赛都在这里。</span>
+          <span class="host">dasai.lanqiao.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://xiaolincoding.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag">八股</span>
+          <b>小林 coding</b>
+          <span>图解计网、操作系统、MySQL、Redis 的面试知识点。面试前背八股就从这里背。</span>
+          <span class="host">xiaolincoding.com</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 开发工具 ============ -->
+  <section class="cat" id="dev" data-cat>
+    <div class="cat-head reveal">
+      <h2>开发工具</h2>
+      <p>写代码之前先把这些装好。</p>
+      <span class="count"></span>
+    </div>
+    <div class="tool-grid">
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag free">学生免费</span>
+          <b>IntelliJ IDEA</b>
+          <span>Java 开发的主力编辑器。社区版免费，用学校邮箱申请 JetBrains 学生包能解锁旗舰版。</span>
+          <span class="host">jetbrains.com/idea</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.jetbrains.com/datagrip/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>DataGrip</b>
+          <span>图形化的数据库管理工具，看表、写 SQL 比命令行直观得多。</span>
+          <span class="host">jetbrains.com/datagrip</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://apifox.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>Apifox</b>
+          <span>接口测试工具。写完后端接口，用它验证能不能返回正确数据。</span>
+          <span class="host">apifox.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://git-scm.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>Git 官网</b>
+          <span>下载安装包的地方。代码存档和「后悔药」工具，所有项目都要用。</span>
+          <span class="host">git-scm.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.docker.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <b>Docker 官网</b>
+          <span>下载 Docker Desktop。Windows 上装之前要先开 WSL2。</span>
+          <span class="host">docker.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://code.visualstudio.com/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag free">免费</span>
+          <b>VS Code</b>
+          <span>轻量万能编辑器。看前端代码、改配置文件、写 Markdown 笔记都用它，比 IDEA 启动快。</span>
+          <span class="host">code.visualstudio.com</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 课程视频 ============ -->
+  <section class="cat" id="courses" data-cat>
+    <div class="cat-head reveal">
+      <h2>课程视频</h2>
+      <p>按技术栈排。想复习某一门直接从这里进。</p>
+      <span class="count"></span>
+    </div>
+    <div class="course-grid">
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV17F411T7Ao" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">01</span>
+        <span class="txt"><b>JavaSE（上部）</b><small>Java 基础 · 黑马程序员</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1yW4y1Y7Ms" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">02</span>
+        <span class="txt"><b>JavaSE（下部）</b><small>Java 基础 · 集合 / IO / 多线程</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1YE411D7nH" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">03</span>
+        <span class="txt"><b>操作系统</b><small>计算机基础 · 王道考研</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV18TZuBQE5q" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">04</span>
+        <span class="txt"><b>计算机组成原理</b><small>计算机基础 · Beokayy_（b姐）</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1Kr4y1i7ru" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">05</span>
+        <span class="txt"><b>MySQL 数据库</b><small>数据库 · 黑马程序员</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1s3411K7jH" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">06</span>
+        <span class="txt"><b>JDBC</b><small>数据库 · Java 连接数据库</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1cr4y1671t" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">07</span>
+        <span class="txt"><b>Redis</b><small>数据库 · 内存缓存</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1m84y1w7Tb" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">08</span>
+        <span class="txt"><b>JavaWeb</b><small>后端 · 黑马程序员</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV15b4y1a7yG" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">09</span>
+        <span class="txt"><b>SpringBoot</b><small>后端 · Java 主流框架</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1TP411v7v6" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">10</span>
+        <span class="txt"><b>苍穹外卖</b><small>项目实战 · 黑马程序员</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1pX4y1S7Dq" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">11</span>
+        <span class="txt"><b>Git</b><small>工程工具 · 版本控制</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1cq421w72c" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">12</span>
+        <span class="txt"><b>Linux 基本命令</b><small>工程工具 · 命令行基础</small></span>
+      </a>
+      <a class="course-row reveal has-tilt tilt" data-tilt data-tilt-max="5" href="https://www.bilibili.com/video/BV1HP4118797" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <span class="idx">13</span>
+        <span class="txt"><b>Docker</b><small>工程工具 · 容器与环境打包</small></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 英语与竞赛 ============ -->
+  <section class="cat" id="exam" data-cat>
+    <div class="cat-head reveal">
+      <h2>英语与竞赛</h2>
+      <p>报名都有截止日期，错过就等一年。把这几个官网收藏好。</p>
+      <span class="count"></span>
+    </div>
+    <div class="tool-grid">
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://cet-bm.neea.edu.cn/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag hot">报名</span>
+          <b>四六级报名系统</b>
+          <span>教育部考试中心官方报名入口。四级、六级报名都从这里进。</span>
+          <span class="host">cet-bm.neea.edu.cn</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://www.comap.com/contests/mcm-icm" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag hot">报名</span>
+          <b>美赛 MCM / ICM 官网</b>
+          <span>美国大学生数学建模竞赛主办方 COMAP 官网。报名、赛题和历年优秀论文都在这里。</span>
+          <span class="host">comap.com</span>
+        </div>
+      </a>
+      <a class="tool reveal has-tilt tilt" data-tilt data-tilt-max="8" href="https://dasai.lanqiao.cn/" target="_blank" rel="noopener">
+        <div class="sheen"></div>
+        <div class="tilt-inner">
+          <span class="tag hot">报名</span>
+          <b>蓝桥杯大赛官网</b>
+          <span>报名、缴费、查赛场都在这里。</span>
+          <span class="host">dasai.lanqiao.cn</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="note-box reveal">
+    <b>怎么用这一页：</b>不用全部装、全部注册。AI 工具先挑一个国内直连的当日常，再挑一个 AI 编辑器（Qoder 或 Cursor）配合写项目，够用了。其他的等真需要时再开。
+  </div>
+
+  <footer>
+    <span>Louis · Keep moving, keep making.</span>
+    <span><a href="index.html">← 学年规划</a></span>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var THEME_KEY = 'louis-plan-2026-theme';
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia('(max-width: 880px), (hover: none)').matches;
+
+  var themeBtn = document.getElementById('themeBtn');
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.textContent = (t === 'dark') ? '☀' : '🌙';
+    try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
+  }
+  var saved = 'dark';
+  try { saved = localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) {}
+  applyTheme(saved);
+  themeBtn.addEventListener('click', function () {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  var total = 0;
+  [].forEach.call(document.querySelectorAll('[data-cat]'), function (cat) {
+    var n = cat.querySelectorAll('a[href]').length;
+    total += n;
+    var c = cat.querySelector('.count');
+    if (c) c.textContent = n + ' 个';
+  });
+  var tc = document.getElementById('totalCount');
+  if (tc) tc.textContent = total;
+
+  if (!isTouch && !reduceMotion) {
+    [].forEach.call(document.querySelectorAll('[data-tilt]'), function (el) {
+      var max = parseFloat(el.dataset.tiltMax || '9');
+      var raf = null;
+      el.addEventListener('mousemove', function (e) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;
+          var py = (e.clientY - r.top) / r.height;
+          el.style.transform = 'perspective(1100px) rotateX(' + ((0.5 - py) * max * 2).toFixed(2) +
+            'deg) rotateY(' + ((px - 0.5) * max * 2).toFixed(2) + 'deg) translateZ(12px)';
+          el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+          el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        });
+      });
+      el.addEventListener('mouseleave', function () {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        el.style.transform = '';
+      });
+    });
+  }
+
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 40, 240) + 'ms';
+      ro.observe(el);
+    });
+  }
+
+  var navLinks = [].slice.call(document.querySelectorAll('.months a'));
+  var navMap = {};
+  navLinks.forEach(function (a) { navMap[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var link = navMap[en.target.id];
+        if (!link || !en.isIntersecting) return;
+        navLinks.forEach(function (a) { a.classList.remove('active'); });
+        link.classList.add('active');
+      });
+    }, { rootMargin: '-88px 0px -68% 0px', threshold: 0 });
+    [].forEach.call(document.querySelectorAll('[data-cat]'), function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
