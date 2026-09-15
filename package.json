@@ -1,0 +1,15 @@
+{
+  "name": "louis-blog",
+  "version": "1.0.0",
+  "description": "Louis 的个人博客",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

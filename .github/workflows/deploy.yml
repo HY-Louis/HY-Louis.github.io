@@ -1,0 +1,65 @@
+# 这个文件告诉 GitHub：每次我推送代码，你就自动帮我打包并发布网站。
+# 一次配置，以后写完文章只需要 git push。
+
+name: 构建并部署博客
+
+on:
+  # 推送到 main 分支时自动触发
+  push:
+    branches: [main]
+  # 也允许在 GitHub 网页上手动点按钮触发
+  workflow_dispatch:
+
+# 给这条流水线开权限：读代码、写 Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只跑一个部署，避免两次推送撞车
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # ---------- 第一步：把 Markdown 打包成网站 ----------
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+        with:
+          # 拉完整历史，这样「最后更新于」的时间才准
+          fetch-depth: 0
+
+      - name: 准备 Node 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 构建静态网站
+        run: npm run build
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传构建产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  # ---------- 第二步：把打包好的网站发布上线 ----------
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 发布到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

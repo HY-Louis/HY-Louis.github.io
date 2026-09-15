@@ -1,0 +1,19 @@
+# 依赖包，体积大且能重新下载，不进仓库
+node_modules/
+
+# VitePress 构建产物和缓存，每次构建都会重新生成
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# 系统和编辑器生成的杂项文件
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+*.swp
+
+# 环境变量文件，可能含密码和密钥，绝对不能提交
+.env
+.env.local
+.env.*.local
