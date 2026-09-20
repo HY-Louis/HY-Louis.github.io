@@ -214,8 +214,8 @@ body{
 }
 .has-tilt:hover .sheen{opacity:1}
 
-/* ---------- 五条主线 ---------- */
-.pillars{display:grid; grid-template-columns:repeat(5,1fr); gap:13px; perspective:1200px}
+/* ---------- 四条主线 ---------- */
+.pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:13px; perspective:1200px}
 .pillar{
   background:var(--surface); border:1px solid var(--line); border-radius:15px; padding:19px 17px;
   position:relative; overflow:hidden; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);

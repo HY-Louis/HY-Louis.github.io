@@ -9,7 +9,6 @@
 - 啃 Java 全栈路线，从 JavaSE 到 SpringBoot 到项目实战
 - 每天刷算法题，备战蓝桥杯
 - 数学在跟张宇的课，为考研做准备
-- 在导师指导下准备第一篇论文
 
 具体的时间安排在 <a href="/plan/index.html" target="_blank">学习规划</a> 页面。
 

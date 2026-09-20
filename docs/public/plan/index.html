@@ -61,10 +61,10 @@
     </div>
   </section>
 
-  <!-- ============ 五条主线 ============ -->
+  <!-- ============ 四条主线 ============ -->
   <section class="section">
-    <h2 class="reveal">今年的五条主线</h2>
-    <p class="section-sub reveal">月度任务是执行，这五条是判断「这一年过得好不好」的标准。</p>
+    <h2 class="reveal">今年的四条主线</h2>
+    <p class="section-sub reveal">月度任务是执行，这四条是判断「这一年过得好不好」的标准。</p>
     <div class="pillars">
       <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
         <div class="sheen"></div>
@@ -81,10 +81,6 @@
       <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
         <div class="sheen"></div>
         <div class="tilt-inner"><b>工程能力</b><span>Java 全路线打穿，苍穹外卖手敲掌握，做出可运行的项目</span></div>
-      </div>
-      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
-        <div class="sheen"></div>
-        <div class="tilt-inner"><b>科研</b><span>导师确认方向后，争取完成一篇 CCF-C（如 IJCNN）投稿</span></div>
       </div>
     </div>
   </section>
@@ -501,8 +497,8 @@
       <div class="month-head">
         <div class="month-num">01</div>
         <div>
-          <h3 class="month-title">考试与投稿准备</h3>
-          <p class="month-tagline">一月 · 完成阶段性收束，接上科研线</p>
+          <h3 class="month-title">期末考试与美赛准备</h3>
+          <p class="month-tagline">一月 · 完成期末考试，准备美赛并巩固基础</p>
         </div>
         <div class="month-prog"><div class="bar"><i></i></div><span>0 / 0</span></div>
       </div>
@@ -520,21 +516,7 @@
         </div>
 
         <div class="item">
-          <input type="checkbox" class="cb" aria-label="论文投稿准备">
-          <div>
-            <div class="course-line">
-              <span class="course-name">论文投稿准备（目标 CCF-C）</span>
-              <span class="chip exam">看导师节点</span>
-            </div>
-            <div class="notes">
-              <p>在导师确认方向、题目和投稿要求后，争取完成一篇 CCF-C 论文投稿（如 IJCNN）。</p>
-            </div>
-            <div class="warn"><b>先核实再动手：</b>IJCNN 的分类、投稿类型和截止日期需要提前核实——这类会议的具体信息以官网为准，别按记忆里的时间准备。</div>
-          </div>
-        </div>
-
-        <div class="item">
-          <input type="checkbox" class="cb" aria-label="美赛赛前准备">
+          <input type="checkbox" class="cb" aria-label="美赛赛前准备" data-uid="m01-2">
           <div>
             <div class="course-line">
               <span class="course-name">美赛赛前准备</span>
@@ -545,7 +527,7 @@
         </div>
 
         <div class="item">
-          <input type="checkbox" class="cb" aria-label="基础课巩固 + 算法手感">
+          <input type="checkbox" class="cb" aria-label="基础课巩固 + 算法手感" data-uid="m01-3">
           <div>
             <div class="course-line">
               <span class="course-name">操作系统 · 计组 · 算法手感</span>
@@ -556,7 +538,7 @@
         </div>
 
         <div class="item">
-          <input type="checkbox" class="cb" aria-label="张宇线代进行中">
+          <input type="checkbox" class="cb" aria-label="张宇线代进行中" data-uid="m01-4">
           <div>
             <div class="course-line">
               <span class="course-name">张宇线代基础 + 强化 · 1000 题</span>
@@ -720,7 +702,7 @@
   <!-- ============ 全年提醒 ============ -->
   <div class="note-box reveal">
     <b>全年提醒：</b>英语单词背记、运动、以及对 AI 行业的基本关注，贯穿全年不断线。<br>
-    论文投稿以导师确认的方向和真实截止时间为准；这份计划可以随时补充整改——直接在原计划书上改，然后告诉我，我同步更新到这一页。
+    这份计划可以随时补充整改——根据学习进度调整安排，及时更新这一页。
   </div>
 
   <footer>
@@ -759,7 +741,8 @@
   var allBoxes = [];
   months.forEach(function (monthEl) {
     [].forEach.call(monthEl.querySelectorAll('.cb'), function (cb, i) {
-      cb.dataset.uid = monthEl.id + '-' + i;
+      // 显式编号保留已有任务的进度，避免删除条目后勾选错位。
+      cb.dataset.uid = cb.dataset.uid || monthEl.id + '-' + i;
       allBoxes.push(cb);
     });
   });
