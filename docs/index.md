@@ -10,6 +10,10 @@ hero:
       text: 读文章
       link: /blog/
     - theme: alt
+      text: 工具箱
+      link: /tools/
+      target: _blank
+    - theme: alt
       text: 我的学年规划
       link: /plan/index.html
       target: _blank

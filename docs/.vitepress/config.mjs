@@ -21,9 +21,9 @@ export default defineConfig({
   lastUpdated: true,
 
   // 构建时如果有链接指向不存在的页面，直接报错而不是悄悄发布。
-  // /plan/ 下面是手写的静态 HTML（放在 docs/public/plan/），
+  // /plan/ 和 /tools/ 下面是手写的静态 HTML（放在 docs/public/），
   // 不是 VitePress 页面，所以这里要放行，否则构建会误报。
-  ignoreDeadLinks: [/^\/plan\//],
+  ignoreDeadLinks: [/^\/(?:plan|tools)\//],
 
   head: [
     ['meta', { name: 'theme-color', content: '#7c9cff' }],
@@ -36,12 +36,13 @@ export default defineConfig({
   // ========================================================
   themeConfig: {
     // 顶部导航栏
-    // 「学习规划」指向 docs/public/plan/ 里的手写 HTML。
+    // 「工具箱」和「学习规划」指向 docs/public/ 里的手写 HTML。
     // 必须加 target: '_blank'：那是独立页面，不归 VitePress 路由管，
     // 不加的话点击会被路由拦截，跳到 404。
     nav: [
       { text: '首页', link: '/' },
       { text: '博客', link: '/blog/' },
+      { text: '工具箱', link: '/tools/', target: '_blank' },
       { text: '学习规划', link: '/plan/index.html', target: '_blank' },
       { text: '关于', link: '/about/' },
     ],
