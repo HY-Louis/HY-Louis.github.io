@@ -26,7 +26,7 @@ export default defineConfig({
   ignoreDeadLinks: [/^\/(?:plan|tools)\//],
 
   head: [
-    ['meta', { name: 'theme-color', content: '#7c9cff' }],
+    ['meta', { name: 'theme-color', content: '#202e73' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Louis 的个人博客' }],
   ],

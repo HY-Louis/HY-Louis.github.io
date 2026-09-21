@@ -17,3 +17,8 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# Impeccable design context and review artifacts
+.impeccable/review/
+.impeccable/build/
+.impeccable/mocks/
