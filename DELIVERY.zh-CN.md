@@ -155,6 +155,11 @@
 
 - 「刷题平台」里仍保留「蓝桥杯官网」入口，分类说明也写着「洛谷和蓝桥杯官网备赛」。本轮只按用户要求删除「英语与竞赛」分类，这条没有动，等用户确认是否一并去掉。
 
+## 上线记录
+
+- 提交：`72acb29`「工具箱调整并去掉学习规划的打勾进度」，推送 `main`；工作流 run `36231947670`，build 与 deploy 均 success。
+- 线上核对：<https://hy-louis.github.io/plan/index.html> 已无 `<input>`、进度条与清空按钮，15 条课程链接、5 份章节指南、结尾验收要求仍在；<https://hy-louis.github.io/tools/> 分类为 ai / oj / dev / courses / learn，WorkBuddy、技术文章摘抄、菜鸟教程、Z-Library、Netlify Drop、数据结构与计算机网络链接均已在线上，Hermes / Claude / 英语竞赛内容为 0 处；<https://hy-louis.github.io/about/> 已是用户改写后的版本。
+
 ---
 
 # 上线记录
