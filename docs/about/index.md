@@ -10,7 +10,7 @@
 - 每天刷算法题，备战蓝桥杯
 - 数学在跟张宇的课，为考研做准备
 
-具体的时间安排在 <a href="/plan/index.html" target="_blank">学习规划</a> 页面。
+具体的学习路线在 <a href="/plan/index.html" target="_self">学习规划</a> 页面。
 
 ## 这个博客写什么
 

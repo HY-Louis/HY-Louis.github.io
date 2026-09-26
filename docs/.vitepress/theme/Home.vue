@@ -26,9 +26,9 @@ function resetArt(event) { event.currentTarget.style.setProperty('--art-x', '0px
         <p class="library-intro">我是 Louis。在这里记录代码、问题与思考。</p>
         <div class="library-actions">
           <a class="primary-link" href="/blog/">翻开我的札记</a>
-          <a class="quiet-link" href="/tools/" target="_blank" rel="noopener">探索工具箱</a>
+          <a class="quiet-link" href="/tools/" target="_self">探索工具箱</a>
         </div>
-        <p class="library-motto">{{ content.motto }}<span lang="en">Keep learning. Keep making.</span></p>
+        <p class="library-motto">{{ content.motto }}<span lang="en">God helps those who help themselves.</span></p>
       </div>
     </section>
     <section id="journal" class="journal section-shell" aria-labelledby="journal-heading">
@@ -51,13 +51,13 @@ function resetArt(event) { event.currentTarget.style.setProperty('--art-x', '0px
       </dl>
     </section>
     <section class="portals section-shell" aria-label="工具与学习入口">
-      <a href="/tools/" target="_blank" rel="noopener" class="portal">
+      <a href="/tools/" target="_self" class="portal">
         <h2>工具箱 <small lang="en">Toolbox</small></h2>
         <p>好用的工具与值得收藏的资源，放在这里。</p><span class="portal-action">打开工具箱 <Arrow /></span>
       </a>
-      <a href="/plan/index.html" target="_blank" rel="noopener" class="portal">
-        <h2>学年规划 <small lang="en">Learning Path</small></h2>
-        <p>从课程到项目，一步步把想学的变成学会的。</p><span class="portal-action">查看学习路线 <Arrow /></span>
+      <a href="/plan/index.html" target="_self" class="portal">
+        <h2>学习规划 <small lang="en">Learning Path</small></h2>
+        <p>后端开发路线与 408 学习，两条线都在同一页。</p><span class="portal-action">查看学习路线 <Arrow /></span>
       </a>
     </section>
     <div class="art-colophon section-shell"><span lang="en">A place for curiosity.</span><p>首页插画为 AI 生成的原创古典神话意象，并非历史版画。<a href="/art/SOURCES.txt" target="_blank" rel="noopener">素材说明</a></p></div>

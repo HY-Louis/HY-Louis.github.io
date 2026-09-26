@@ -36,14 +36,15 @@ export default defineConfig({
   // ========================================================
   themeConfig: {
     // 顶部导航栏
-    // 「工具箱」和「学习规划」指向 docs/public/ 里的手写 HTML。
-    // 必须加 target: '_blank'：那是独立页面，不归 VitePress 路由管，
-    // 不加的话点击会被路由拦截，跳到 404。
+    // 工具箱不放在这里：首页首屏与「入口」区都已经有工具箱入口，导航只留内容栏目。
+    // 「学习规划」指向 docs/public/ 里的手写 HTML，必须带 target: '_self'：
+    //   VitePress 的路由会拦截站内链接（/plan/index.html 与 /tools/ 这类静态页也会被当成
+    //   自己管理的页面）并跳到 404；源码里只要链接带了 target 属性就会跳过拦截，
+    //   所以这里用 _self —— 既绕开路由，又在当前标签页打开，不新开窗口。
     nav: [
       { text: '首页', link: '/' },
       { text: '博客', link: '/blog/' },
-      { text: '工具箱', link: '/tools/', target: '_blank' },
-      { text: '学习规划', link: '/plan/index.html', target: '_blank' },
+      { text: '学习规划', link: '/plan/index.html', target: '_self' },
       { text: '关于', link: '/about/' },
     ],
 

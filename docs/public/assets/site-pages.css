@@ -25,9 +25,9 @@ button{font:inherit;cursor:pointer}
 .months a{color:#e1e3fb}
 .tools{display:flex;align-items:center;gap:24px;margin-left:auto}
 .overall{display:flex;align-items:center;gap:10px;font-size:13px}
-.overall b,.month-prog{font-variant-numeric:tabular-nums}
-.overall-bar,.month-prog .bar{width:80px;height:3px;background:#ffffff40}
-.overall-bar i,.month-prog .bar i{display:block;width:0;height:100%;background:currentColor}
+.overall b,.stage-prog{font-variant-numeric:tabular-nums}
+.overall-bar,.stage-prog .bar{width:80px;height:3px;background:#ffffff40}
+.overall-bar i,.stage-prog .bar i{display:block;width:0;height:100%;background:currentColor}
 .iconbtn{min-width:56px;min-height:44px;padding:8px 10px;background:transparent;color:inherit;border:1px solid #ffffff70;border-radius:2px;font-size:13px}
 .iconbtn:hover{background:#ffffff18}
 .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;padding:72px 0 44px;border-bottom:1px solid var(--line)}
@@ -46,14 +46,14 @@ button{font:inherit;cursor:pointer}
 .pillar b{display:block;font:24px/1.5 var(--serif);margin-bottom:10px}
 .pillar span{font-size:14px;color:var(--ink-dim)}
 .pillar strong{color:var(--ink)}
-.month-block{margin-top:48px;scroll-margin-top:155px}
-.month-head{display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding:24px 0;border-top:1px solid var(--accent);border-bottom:1px solid var(--line)}
-.month-num{font:52px/1 'GFS Didot',serif;color:var(--accent);min-width:58px}
-.month-title{font:27px/1.4 var(--serif);margin:0}
-.month-tagline{color:var(--muted);font-size:14px;margin:5px 0 0}
-.month-prog{display:flex;align-items:center;gap:12px;margin-left:auto;font-size:14px;color:var(--muted)}
-.month-prog .bar{background:var(--line)}
-.month-prog .bar i{background:var(--accent)}
+.stage-block{margin-top:48px;scroll-margin-top:155px}
+.stage-head{display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding:24px 0;border-top:1px solid var(--accent);border-bottom:1px solid var(--line)}
+.stage-num{font:52px/1 'GFS Didot',serif;color:var(--accent);min-width:58px}
+.stage-title{font:27px/1.4 var(--serif);margin:0}
+.stage-tagline{color:var(--muted);font-size:14px;margin:5px 0 0}
+.stage-prog{display:flex;align-items:center;gap:12px;margin-left:auto;font-size:14px;color:var(--muted)}
+.stage-prog .bar{background:var(--line)}
+.stage-prog .bar i{background:var(--accent)}
 .item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;padding:26px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border-bottom:0}
 .cb{appearance:auto;width:24px;height:24px;margin:9px 0 0;accent-color:var(--accent);cursor:pointer}
@@ -71,10 +71,26 @@ button{font:inherit;cursor:pointer}
 .notes{font-size:15px;color:var(--ink-dim);margin-top:10px;line-height:1.95}
 .notes p{margin:5px 0}
 .notes strong,.warn strong{color:var(--ink)}
-.warn,.month-foot,.note-box{background:var(--surface);padding:16px 20px;color:var(--ink-dim);font-size:14px;line-height:1.9;margin-top:18px}
+.warn,.stage-foot,.note-box{background:var(--surface);padding:16px 20px;color:var(--ink-dim);font-size:14px;line-height:1.9;margin-top:18px}
 .warn b{color:var(--gold)}
-.month-foot b,.note-box b{color:var(--cyan)}
+.stage-foot b,.note-box b{color:var(--cyan)}
 .note-box{margin-top:56px}
+/* 结尾验收要求：写在苍穹外卖项目条目内，作为这个项目的完成标准 */
+.acceptance{margin-top:20px;padding-top:18px;border-top:1px solid var(--accent)}
+.acceptance>b{display:block;font:24px/1.5 var(--serif);color:var(--accent);margin-bottom:6px}
+.acceptance>p{margin:0 0 6px;font-size:15px;line-height:1.9;color:var(--ink-dim)}
+.checklist{counter-reset:step;list-style:none;margin:0;padding:0}
+.checklist li{counter-increment:step;display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid var(--line);color:var(--ink-dim);line-height:1.9}
+.checklist li:last-child{border-bottom:1px solid var(--line)}
+.checklist li::before{content:counter(step,decimal-leading-zero);font:22px/1.5 'GFS Didot',serif;color:var(--accent)}
+/* 章节学习指南 */
+.guide{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;line-height:1.8}
+.guide caption{text-align:left;color:var(--muted);font-size:13px;padding:0 0 8px}
+.guide th{color:var(--muted);font-weight:400;font-size:13px;text-align:left;white-space:nowrap;padding:8px 14px 8px 0;border-bottom:1px solid var(--line)}
+.guide td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.guide tr:last-child td{border-bottom:0}
+.guide td:first-child{white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums}
+.guide td:nth-child(2){white-space:nowrap}
 .cat-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px}
 .cat-head p{font-size:14px;color:var(--muted);margin:0;max-width:64ch}
 .cat-head .count{margin-left:auto;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
@@ -100,6 +116,7 @@ footer a,.reset{display:inline-flex;align-items:center;min-height:44px}
  .wrap{padding-inline:24px}.topbar-inner{padding:10px 24px;gap:8px 22px}
  .hero{gap:36px;padding-top:48px}.hero h1{font-size:44px}
  .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .checklist li{grid-template-columns:36px minmax(0,1fr);gap:12px}
  .overall-bar{display:none}.pages{gap:12px}.months{gap:22px}
 }
 @media(max-width:600px){
@@ -110,13 +127,23 @@ footer a,.reset{display:inline-flex;align-items:center;min-height:44px}
  .hero{grid-template-columns:1fr;gap:28px;padding:54px 0 32px}.hero h1{font-size:40px}
  .page-english{font-size:20px}.stamp{padding-top:16px}.stamp strong{font-size:26px}
  .section,.cat{margin-top:44px}.section>h2,.cat-head h2{font-size:28px}.pillars{gap:24px}
- .pillar b{font-size:22px}.month-head{gap:12px}.month-title{font-size:24px}.month-num{font-size:44px;min-width:50px}
- .month-prog{width:100%;margin-left:62px}.month-tagline{font-size:13px}
+ .pillar b{font-size:22px}.stage-head{gap:12px}.stage-title{font-size:24px}.stage-num{font-size:44px;min-width:50px}
+ .stage-prog{width:100%;margin-left:62px}.stage-tagline{font-size:13px}
  .item{gap:12px;grid-template-columns:26px minmax(0,1fr)}.course-name{font-size:17px}.go{margin-left:0}
  .tool-grid,.course-grid{grid-template-columns:1fr}.tool{padding-block:22px}.tool b{font-size:25px}
+ .acceptance>b{font-size:21px}.acceptance .checklist li{font-size:15px}
+ .checklist li{grid-template-columns:32px minmax(0,1fr);gap:10px}
+ .guide,.guide tbody,.guide tr,.guide td{display:block;width:auto}
+ .guide thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .guide tr{border-top:1px solid var(--line);padding:12px 0}
+ .guide tr:first-child{border-top:0}
+ .guide td{border:0;padding:0}
+ .guide td:first-child{font-weight:600;white-space:normal}
+ .guide td:nth-child(2){margin-top:4px;white-space:normal}
+ .guide td:nth-child(3){margin-top:6px}
  .cat-head{gap:10px}.cat-head p{order:3;width:100%}.cat-head .count{margin-left:auto}
- .warn,.month-foot,.note-box{padding:14px;font-size:14px}.notes{font-size:15px}
+ .warn,.stage-foot,.note-box{padding:14px;font-size:14px}.notes{font-size:15px}
  footer{margin-top:44px;gap:8px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-@media print{.topbar,.reset,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.month-block{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}
+@media print{.topbar,.reset,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.stage-block{break-inside:avoid}.guide tr{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}
