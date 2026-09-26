@@ -24,10 +24,6 @@ button{font:inherit;cursor:pointer}
 .months{display:flex;gap:22px;order:3;width:100%;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#969ddc transparent}
 .months a{color:#e1e3fb}
 .tools{display:flex;align-items:center;gap:24px;margin-left:auto}
-.overall{display:flex;align-items:center;gap:10px;font-size:13px}
-.overall b,.stage-prog{font-variant-numeric:tabular-nums}
-.overall-bar,.stage-prog .bar{width:80px;height:3px;background:#ffffff40}
-.overall-bar i,.stage-prog .bar i{display:block;width:0;height:100%;background:currentColor}
 .iconbtn{min-width:56px;min-height:44px;padding:8px 10px;background:transparent;color:inherit;border:1px solid #ffffff70;border-radius:2px;font-size:13px}
 .iconbtn:hover{background:#ffffff18}
 .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;padding:72px 0 44px;border-bottom:1px solid var(--line)}
@@ -51,13 +47,8 @@ button{font:inherit;cursor:pointer}
 .stage-num{font:52px/1 'GFS Didot',serif;color:var(--accent);min-width:58px}
 .stage-title{font:27px/1.4 var(--serif);margin:0}
 .stage-tagline{color:var(--muted);font-size:14px;margin:5px 0 0}
-.stage-prog{display:flex;align-items:center;gap:12px;margin-left:auto;font-size:14px;color:var(--muted)}
-.stage-prog .bar{background:var(--line)}
-.stage-prog .bar i{background:var(--accent)}
-.item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;padding:26px 0;border-bottom:1px solid var(--line)}
+.item{padding:26px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border-bottom:0}
-.cb{appearance:auto;width:24px;height:24px;margin:9px 0 0;accent-color:var(--accent);cursor:pointer}
-.item.checked .course-name{text-decoration:line-through;text-decoration-thickness:1px;color:var(--muted)}
 .course-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px}
 .course-name{font-weight:600;font-size:18px;line-height:1.6}
 .chip,.range{display:inline-block;font-size:12px;line-height:1.8;padding:2px 8px;border:1px solid var(--line);border-radius:2px}
@@ -108,28 +99,25 @@ button{font:inherit;cursor:pointer}
 .course-row b{display:block;font-size:17px;font-weight:600;overflow-wrap:anywhere}
 .course-row small{display:block;color:var(--muted);font-size:13px;margin-top:6px}
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:64px;padding-top:26px;color:var(--muted);font-size:13px}
-footer a,.reset{display:inline-flex;align-items:center;min-height:44px}
-.reset{background:none;border:0;color:var(--muted);padding:0;font-size:13px;text-decoration:underline;text-underline-offset:4px}
-.reset:hover{color:var(--rose)}
+footer a{display:inline-flex;align-items:center;min-height:44px}
 .reveal{opacity:1;transform:none}
 @media(max-width:900px){
  .wrap{padding-inline:24px}.topbar-inner{padding:10px 24px;gap:8px 22px}
  .hero{gap:36px;padding-top:48px}.hero h1{font-size:44px}
  .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .checklist li{grid-template-columns:36px minmax(0,1fr);gap:12px}
- .overall-bar{display:none}.pages{gap:12px}.months{gap:22px}
+ .pages{gap:12px}.months{gap:22px}
 }
 @media(max-width:600px){
  .wrap{padding-inline:20px}.topbar-inner{padding-inline:20px;gap:8px 16px}.brand{font-size:30px}
  .pages{gap:12px}.pages a{font-size:12px}.tools{gap:8px}.iconbtn{min-width:48px;padding-inline:6px}
- .overall{font-size:12px}.overall>span{display:none}
  .months{gap:20px}.months a{font-size:13px}
  .hero{grid-template-columns:1fr;gap:28px;padding:54px 0 32px}.hero h1{font-size:40px}
  .page-english{font-size:20px}.stamp{padding-top:16px}.stamp strong{font-size:26px}
  .section,.cat{margin-top:44px}.section>h2,.cat-head h2{font-size:28px}.pillars{gap:24px}
  .pillar b{font-size:22px}.stage-head{gap:12px}.stage-title{font-size:24px}.stage-num{font-size:44px;min-width:50px}
- .stage-prog{width:100%;margin-left:62px}.stage-tagline{font-size:13px}
- .item{gap:12px;grid-template-columns:26px minmax(0,1fr)}.course-name{font-size:17px}.go{margin-left:0}
+ .stage-tagline{font-size:13px}
+ .course-name{font-size:17px}.go{margin-left:0}
  .tool-grid,.course-grid{grid-template-columns:1fr}.tool{padding-block:22px}.tool b{font-size:25px}
  .acceptance>b{font-size:21px}.acceptance .checklist li{font-size:15px}
  .checklist li{grid-template-columns:32px minmax(0,1fr);gap:10px}
@@ -146,4 +134,4 @@ footer a,.reset{display:inline-flex;align-items:center;min-height:44px}
  footer{margin-top:44px;gap:8px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-@media print{.topbar,.reset,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.stage-block{break-inside:avoid}.guide tr{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}
+@media print{.topbar,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.stage-block{break-inside:avoid}.guide tr{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}

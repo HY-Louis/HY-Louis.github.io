@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict'
 import { readFileSync, existsSync } from 'node:fs'
 
-// 学习规划（路线式）的内容保全检查。
-// 期望值按「需求文档.md」的实际内容写死；以后主动增删课程或任务时，先改页面再改这里，
-// 不要为了让脚本通过而放宽检查——尤其是课程链接和任务编号。
+// 内容保全检查：学习规划（路线式，无打勾）+ 工具箱。
+// 期望值按「需求文档.md」和用户后续要求写死；以后主动增删课程或入口时，先改页面再改这里，
+// 不要为了让脚本通过而放宽检查——尤其是课程链接和已删除的入口。
 const read = (path) => readFileSync(path, 'utf8')
 const plan = read('docs/public/plan/index.html')
 const tools = read('docs/public/tools/index.html')
+const visible = plan.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<!--[\s\S]*?-->/g, '')
 
 /* ---------- 1. 两条路线都在学习规划这一页里 ---------- */
 assert.ok(plan.includes('id="backend"') && plan.includes('data-route'), 'index.html: missing backend route section')
@@ -21,21 +22,11 @@ for (const stale of ['docs/public/plan/backend.html', 'docs/public/plan/cs408.ht
   assert.ok(!existsSync(stale), `${stale}: route pages must live inside index.html`)
 }
 
-/* ---------- 2. 任务：11 个后端 + 4 门 408，全部固定 UID ---------- */
-const uids = [...plan.matchAll(/<input\b[^>]*class="cb"[^>]*data-uid="([^"]+)"/g)].map((m) => m[1])
-assert.equal((plan.match(/class="cb"/g) || []).length, 15)
-// 每个勾选框都必须带显式编号，避免以后增删条目时进度串位
-assert.equal(uids.length, 15, 'every checkbox needs an explicit data-uid')
-assert.equal(new Set(uids).size, 15, 'duplicate data-uid')
-// 编号沿用原「学年规划」，改造前已打的勾不会丢
-assert.deepEqual(uids, [
-  'm09-0', 'm09-1',
-  'm10-0', 'm10-1', 'm10-2', 'm10-3', 'm10-4', 'm10-5', 'm10-6',
-  'm11-0', 'm11-1',
-  'c408-1', 'm09-3', 'm09-2', 'c408-4'
-])
-assert.ok(plan.includes('louis-plan-2026-progress'), 'progress storage key changed')
-assert.ok(plan.includes('louis-plan-2026-theme'), 'theme storage key changed')
+/* ---------- 2. 学习规划只读：打勾与进度功能按用户要求移除 ---------- */
+assert.ok(!/<input|class="cb"|data-uid|louis-plan-2026-progress|stage-prog|overallBar|resetBtn/.test(plan),
+  'index.html: 复选框、进度条与进度存储都应已移除')
+assert.ok(!/打勾|总进度|清空/.test(visible), 'index.html: 仍有打勾/进度的字样')
+assert.ok(plan.includes('louis-plan-2026-theme'), 'index.html: theme storage key changed')
 
 /* ---------- 3. 结构：三个阶段 + 四门课 ---------- */
 assert.equal((plan.match(/data-stage[ >]/g) || []).length, 7, 'expected 3 stages + 4 courses')
@@ -65,7 +56,7 @@ for (const text of [
 /* ---------- 6. 结尾验收要求写在苍穹外卖项目内 ---------- */
 const atLunchBox = plan.indexOf('苍穹外卖 · 项目实战')
 const atAcceptance = plan.indexOf('结尾验收要求')
-const atRedis = plan.indexOf('data-uid="m11-1"')
+const atRedis = plan.indexOf('Redis 缓存')
 assert.ok(atLunchBox > 0, '苍穹外卖 project missing')
 assert.ok(atAcceptance > atLunchBox, '验收要求必须排在苍穹外卖项目之后')
 assert.ok(atAcceptance < atRedis, '验收要求必须写在苍穹外卖条目内部（Redis 之前）')
@@ -77,13 +68,34 @@ for (const text of ['写实体类', 'Apifox', '前端打开页面', '例如小�
 assert.equal((acceptance.match(/<li>/g) || []).length, 4, 'expected 4 acceptance criteria')
 
 /* ---------- 7. 已移出的内容不得回流 ---------- */
-const visible = plan.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<!--[\s\S]*?-->/g, '')
 assert.ok(!/张宇|四级|六级|美赛|蓝桥杯|期中|期末|GPA|CCF|IJCNN|科研/.test(visible), 'removed content came back')
 assert.ok(!/\d{1,2}\s*月/.test(visible), 'learning path must not be organised by month')
 assert.ok(!/<title>[^<]*学年规划/.test(plan), 'title still says 学年规划')
 assert.ok(plan.includes('<em>学习规划</em>'), 'page title changed')
 
-/* ---------- 8. 工具箱保持独立 ---------- */
+/* ---------- 8. 工具箱：分类、新增入口与已删除入口 ---------- */
+const toolHrefs = [...tools.matchAll(/<a[^>]+href="(https?:[^"]+)"/g)].map((m) => m[1])
+for (const href of [
+  'https://www.workbuddy.cn/',
+  'https://learn.lianglianglee.com/',
+  'https://zh.z-library.sk/',
+  'https://www.runoob.com/',
+  'https://app.netlify.com/drop',
+  'https://www.bilibili.com/video/BV1umZuBsEt5',
+  'https://www.bilibili.com/video/BV1c4411d7jb'
+]) {
+  assert.ok(toolHrefs.includes(href), `工具箱缺少入口：${href}`)
+}
+for (const gone of [
+  'hermes-agent.nousresearch.com', 'claude.com', 'claude.ai',
+  'cet-bm.neea.edu.cn', 'comap.com'
+]) {
+  assert.ok(!tools.includes(gone), `这些入口应当已删除：${gone}`)
+}
+assert.ok(tools.includes('id="learn"') && tools.includes('学习资料'), '工具箱缺少「学习资料」分类')
+assert.ok(!tools.includes('id="exam"') && !tools.includes('英语与竞赛'), '「英语与竞赛」分类应当已删除')
+assert.equal((tools.match(/data-cat[ >]/g) || []).length, 5, '工具箱分类数应为 5')
+assert.ok(tools.includes('5 类 ·'), '工具箱 hero 上的分类数需要与分类保持一致')
 assert.ok(tools.includes('Beokayy_'))
 assert.ok(tools.includes('louis-tools-theme'))
 assert.ok(!/通义千问|Qwen|\d{1,2}月/.test(tools))
@@ -108,4 +120,4 @@ assert.ok(home.includes('God helps those who help themselves.'), 'Home.vue: mott
 assert.ok(plan.includes('Louis · 天助自助者。'), 'plan/index.html: footer slogan changed')
 assert.ok(tools.includes('Louis · 天助自助者。'), 'tools/index.html: footer slogan changed')
 
-console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 任务）与 408 学习（4 门课），共 15 个任务、15 条课程链接、5 份章节指南；结尾验收要求位于苍穹外卖项目内；工具箱仍独立；公开页面无作者视角说明，格言已统一为「天助自助者」。')
+console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 门）与 408 学习（4 门课），共 15 条课程链接、5 份章节指南，结尾验收要求位于苍穹外卖条目内，且打勾与进度功能已移除；工具箱为 5 类（含新增 WorkBuddy / 技术文章摘抄 / 菜鸟教程 / Z-Library / Netlify Drop，已删 Hermes Agent、Claude 与英语竞赛分类）；公开页面无作者视角说明，格言统一为「天助自助者」。')

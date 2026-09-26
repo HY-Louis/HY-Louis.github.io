@@ -119,7 +119,41 @@
 - 删除「关于」页里给作者自己看的提示块「这一页记得补充你自己的信息。文件在 `docs/about/index.md`。」——它会直接出现在公开页面上。
 - `check-content.mjs` 增加两道闸门：公开页面不得出现「这一页就是 / 不再按时间 / 取代原来 / 已经移出 / 共用同一份记录 / 记得补充你自己 / Keep moving / Keep learning」，并且格言必须是「天助自助者」＋「God helps those who help themselves.」。
 - 已渲染核对（1440px 截图：`.impeccable/review/plan-clean-1440.png` 及 `clean-hero.png`、`clean-footer.png`）：首屏文案正常，页脚为「Louis · 天助自助者。」，页面上不再有说明框与英文口号。
-- 仍待用户决定：`docs/about/index.md` 的「备战蓝桥杯」「数学在跟张宇的课」两行。
+- 仍待用户决定：`docs/about/index.md` 的「备战蓝桥杯」「数学在跟张宇的课」两行。（后由用户自行改写，见下文「工具箱调整与学习规划改为只读」。）
+
+---
+
+# 工具箱调整与学习规划改为只读
+
+日期：2026-09-26。用户上线后提出第二轮调整。
+
+## 工具箱 `/tools/`
+
+- 删除「英语与竞赛」整个分类（四六级报名系统、美赛 MCM / ICM 官网、蓝桥杯大赛官网链接三条入口）。
+- 新增「学习资料」分类，三条入口：技术文章摘抄（learn.lianglianglee.com）、菜鸟教程（runoob.com）、Z-Library（zh.z-library.sk）。
+- AI 工具删除 Hermes Agent、Claude Code、Claude；新增 WorkBuddy（workbuddy.cn）。
+- 开发工具新增 Netlify Drop（app.netlify.com/drop）。
+- 课程视频补上数据结构（`BV1umZuBsEt5`）与计算机网络（`BV1c4411d7jb`），链接与学习规划保持一致；同时把 408 四门并排成学习顺序（数据结构 → 计算机组成原理 → 操作系统 → 计算机网络），列表重新编号为 01–15。
+- 分类数保持 5 类，入口总数 37 → 38；hero 与类目数由页面脚本自动统计，文案里的「5 类」同步更新。
+
+## 学习规划 `/plan/index.html`
+
+- 按用户要求移除打勾与进度功能：15 个复选框、7 处阶段进度条、页头「总进度」、页脚「清空所有打勾」按钮，以及相关的 localStorage 读写脚本全部删除。
+- 同步清掉只有这套功能才用的样式（`.cb`、`.item.checked`、`.overall`、`.overall-bar`、`.stage-prog`、`.reset` 及各断点里的对应规则），条目从左侧顶格排版。
+- 首屏简介去掉「学完点一下方框，进度会记在你自己的浏览器里」，改为「按顺序往下走就行」；stamp 文案「11 个任务」改为「11 项」。
+- 老访客浏览器里的 `louis-plan-2026-progress` 记录不再被读取，也不会再写入；主题偏好 `louis-plan-2026-theme` 保持不变。
+- `docs/about/index.md` 由用户自行改写（学校与专业、关注方向、Gmail 联系方式），本轮未代改。
+
+## 已验证
+
+- `node scripts/check-content.mjs` 通过（已按新要求重写）：学习规划确定性检查没有 `<input>` / `data-uid` / 进度条 / `louis-plan-2026-progress`，15 条课程链接、5 份章节指南、结尾验收要求仍在苍穹外卖与 Redis 之间；工具箱检查 5 个分类、新增与已删除入口。
+- `npm run build` 通过。
+- 渲染核对（Edge 无头 + DevTools 协议，本地预览）：学习规划复选框 0、进度元素 0、清空按钮 0、阶段块 7、课程条目 15、`.item` 计算样式为 `block`；点击课程名后 localStorage 里不会出现进度键（主题键仍在）。工具箱读出分类为 `["AI 工具","刷题平台","开发工具","课程视频","学习资料"]`、入口总数 38、AI 工具为 WorkBuddy/DeepSeek/OpenAI/Qoder CN/Cursor/GitHub Copilot/Gemini/Kimi、学习资料三项、课程视频 15 条，且页面里已无 Hermes / Claude / 英语竞赛内容。
+- 截图：`.impeccable/review/plan-nocheck-top.png`、`plan-nocheck-stage1.png`、`plan-nocheck-footer.png`、`plan-nocheck-acceptance.png`、`tools-ai-1440.png`、`tools-learn-1440.png`。
+
+## 遗留
+
+- 「刷题平台」里仍保留「蓝桥杯官网」入口，分类说明也写着「洛谷和蓝桥杯官网备赛」。本轮只按用户要求删除「英语与竞赛」分类，这条没有动，等用户确认是否一并去掉。
 
 ---
 
@@ -130,4 +164,4 @@
 - 线上核对：<https://hy-louis.github.io/> 首页格言已是「天助自助者。God helps those who help themselves.」，导航为 首页 / 博客 / 学习规划 / 关于，旧格言与工具箱导航项均已消失；<https://hy-louis.github.io/plan/index.html> 15 个任务、两段路线（后端开发路线 + 408 学习）、5 份章节学习指南，结尾验收要求仍在苍穹外卖条目内，页内无月份与已移除的旧内容；`/tools/`、`/blog/`、`/about/` 均返回 200。
 - 已删除的 `/plan/backend.html`、`/plan/cs408.html` 线上返回 404；它们从未发布过，站内也没有指向它们的链接，不存在死链来源。
 - 线上真实点击复核（Edge 无头浏览器 + DevTools 协议）：顶栏「学习规划」、首屏「探索工具箱」、首页两张入口卡都在当前标签页打开（标签页数量 1→1，且都落到了真实页面而不是 404）；勾选任务后总进度 0 / 15 → 1 / 15 并写入 `louis-plan-2026-progress`，再点一次可复原。
-- 遗留：`docs/about/index.md` 仍写着「每天刷算法题，备战蓝桥杯」「数学在跟张宇的课」，与本次移出的内容不一致，等用户决定是否同步；`需求文档.md` 未纳入版本库（属个人需求记录，未提交）。
+- 遗留：`docs/about/index.md` 曾写着「每天刷算法题，备战蓝桥杯」「数学在跟张宇的课」，与本次移出的内容不一致；该页后由用户自行改写。`需求文档.md` 未纳入版本库（属个人需求记录，未提交）。
