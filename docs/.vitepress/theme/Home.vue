@@ -57,7 +57,7 @@ function resetArt(event) { event.currentTarget.style.setProperty('--art-x', '0px
       </a>
       <a href="/plan/index.html" target="_self" class="portal">
         <h2>学习规划 <small lang="en">Learning Path</small></h2>
-        <p>后端开发路线与 408 学习，两条线都在同一页。</p><span class="portal-action">查看学习路线 <Arrow /></span>
+        <p>从 Java 后端到计算机基础，一步步往下走。</p><span class="portal-action">查看学习路线 <Arrow /></span>
       </a>
     </section>
     <div class="art-colophon section-shell"><span lang="en">A place for curiosity.</span><p>首页插画为 AI 生成的原创古典神话意象，并非历史版画。<a href="/art/SOURCES.txt" target="_blank" rel="noopener">素材说明</a></p></div>

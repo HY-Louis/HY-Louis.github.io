@@ -23,7 +23,3 @@
 ## 联系
 
 - GitHub：[@HY-Louis](https://github.com/HY-Louis)
-
-::: tip
-这一页记得补充你自己的信息。文件在 `docs/about/index.md`。
-:::

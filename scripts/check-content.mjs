@@ -89,4 +89,23 @@ assert.ok(tools.includes('louis-tools-theme'))
 assert.ok(!/通义千问|Qwen|\d{1,2}月/.test(tools))
 assert.ok(!tools.includes('href="/plan/'))
 
-console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 任务）与 408 学习（4 门课），共 15 个任务、15 条课程链接、5 份章节指南；结尾验收要求位于苍穹外卖项目内；工具箱仍独立。')
+/* ---------- 9. 公开页面上不写「写给作者自己」的话 ---------- */
+// 博客是给别人看的：改版说明、进度存储怎么实现这类内容留在文档里，不放页面上。
+const publicText = [visible, tools.replace(/<script[\s\S]*?<\/script>/g, '')].join('\n')
+for (const bad of [
+  '这一页就是', '不再按时间', '取代原来', '已经移出', '共用同一份记录',
+  '记得补充你自己', 'Keep moving', 'Keep learning'
+]) {
+  assert.ok(!publicText.includes(bad), `作者视角的说明不该出现在公开页面：${bad}`)
+}
+
+/* ---------- 10. 站名与格言 ---------- */
+const home = read('docs/.vitepress/theme/Home.vue')
+const indexMd = read('docs/index.md')
+assert.ok(indexMd.includes('天助自助者'), 'index.md: motto changed')
+assert.ok(!/学习，创造，保持好奇/.test(indexMd), 'index.md: old motto came back')
+assert.ok(home.includes('God helps those who help themselves.'), 'Home.vue: motto english changed')
+assert.ok(plan.includes('Louis · 天助自助者。'), 'plan/index.html: footer slogan changed')
+assert.ok(tools.includes('Louis · 天助自助者。'), 'tools/index.html: footer slogan changed')
+
+console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 任务）与 408 学习（4 门课），共 15 个任务、15 条课程链接、5 份章节指南；结尾验收要求位于苍穹外卖项目内；工具箱仍独立；公开页面无作者视角说明，格言已统一为「天助自助者」。')
