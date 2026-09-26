@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-26T04:30:00Z",
+  "title": "Design System: Louis",
+  "extensions": {
+    "colorMeta": {
+      "ultramarine": {
+        "role": "primary",
+        "displayName": "群青",
+        "tonalRamp": [
+          "oklch(0.15 0.25 269)",
+          "oklch(0.25 0.25 269)",
+          "oklch(0.35 0.25 269)",
+          "oklch(0.45 0.25 269)",
+          "oklch(0.58 0.25 269)",
+          "oklch(0.7 0.25 269)",
+          "oklch(0.83 0.25 269)",
+          "oklch(0.95 0.25 269)"
+        ]
+      },
+      "ultramarine-deep": {
+        "role": "primary",
+        "displayName": "深群青",
+        "tonalRamp": [
+          "oklch(0.15 0.2 269)",
+          "oklch(0.25 0.2 269)",
+          "oklch(0.35 0.2 269)",
+          "oklch(0.45 0.2 269)",
+          "oklch(0.58 0.2 269)",
+          "oklch(0.7 0.2 269)",
+          "oklch(0.83 0.2 269)",
+          "oklch(0.95 0.2 269)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "阅读纸色",
+        "tonalRamp": [
+          "oklch(0.15 0.015 85)",
+          "oklch(0.25 0.015 85)",
+          "oklch(0.35 0.015 85)",
+          "oklch(0.45 0.015 85)",
+          "oklch(0.58 0.015 85)",
+          "oklch(0.7 0.015 85)",
+          "oklch(0.83 0.015 85)",
+          "oklch(0.95 0.015 85)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "象牙白",
+        "tonalRamp": [
+          "oklch(0.15 0.014 85)",
+          "oklch(0.25 0.014 85)",
+          "oklch(0.35 0.014 85)",
+          "oklch(0.45 0.014 85)",
+          "oklch(0.58 0.014 85)",
+          "oklch(0.7 0.014 85)",
+          "oklch(0.83 0.014 85)",
+          "oklch(0.95 0.014 85)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "深墨",
+        "tonalRamp": [
+          "oklch(0.15 0.06 273)",
+          "oklch(0.25 0.06 273)",
+          "oklch(0.35 0.06 273)",
+          "oklch(0.45 0.06 273)",
+          "oklch(0.58 0.06 273)",
+          "oklch(0.7 0.06 273)",
+          "oklch(0.83 0.06 273)",
+          "oklch(0.95 0.06 273)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "灰蓝说明",
+        "tonalRamp": [
+          "oklch(0.15 0.035 273)",
+          "oklch(0.25 0.035 273)",
+          "oklch(0.35 0.035 273)",
+          "oklch(0.45 0.035 273)",
+          "oklch(0.58 0.035 273)",
+          "oklch(0.7 0.035 273)",
+          "oklch(0.83 0.035 273)",
+          "oklch(0.95 0.035 273)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "细分隔线",
+        "tonalRamp": [
+          "oklch(0.15 0.012 95)",
+          "oklch(0.25 0.012 95)",
+          "oklch(0.35 0.012 95)",
+          "oklch(0.45 0.012 95)",
+          "oklch(0.58 0.012 95)",
+          "oklch(0.7 0.012 95)",
+          "oklch(0.83 0.012 95)",
+          "oklch(0.95 0.012 95)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "备注底色",
+        "tonalRamp": [
+          "oklch(0.15 0.015 85)",
+          "oklch(0.25 0.015 85)",
+          "oklch(0.35 0.015 85)",
+          "oklch(0.45 0.015 85)",
+          "oklch(0.58 0.015 85)",
+          "oklch(0.7 0.015 85)",
+          "oklch(0.83 0.015 85)",
+          "oklch(0.95 0.015 85)"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "夜色阅读底",
+        "tonalRamp": [
+          "oklch(0.15 0.035 266)",
+          "oklch(0.25 0.035 266)",
+          "oklch(0.35 0.035 266)",
+          "oklch(0.45 0.035 266)",
+          "oklch(0.58 0.035 266)",
+          "oklch(0.7 0.035 266)",
+          "oklch(0.83 0.035 266)",
+          "oklch(0.95 0.035 266)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "深色模式文字",
+        "tonalRamp": [
+          "oklch(0.15 0.015 85)",
+          "oklch(0.25 0.015 85)",
+          "oklch(0.35 0.015 85)",
+          "oklch(0.45 0.015 85)",
+          "oklch(0.58 0.015 85)",
+          "oklch(0.7 0.015 85)",
+          "oklch(0.83 0.015 85)",
+          "oklch(0.95 0.015 85)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "深色模式说明",
+        "tonalRamp": [
+          "oklch(0.15 0.03 263)",
+          "oklch(0.25 0.03 263)",
+          "oklch(0.35 0.03 263)",
+          "oklch(0.45 0.03 263)",
+          "oklch(0.58 0.03 263)",
+          "oklch(0.7 0.03 263)",
+          "oklch(0.83 0.03 263)",
+          "oklch(0.95 0.03 263)"
+        ]
+      },
+      "dark-rule": {
+        "role": "neutral",
+        "displayName": "深色模式分隔",
+        "tonalRamp": [
+          "oklch(0.15 0.04 265)",
+          "oklch(0.25 0.04 265)",
+          "oklch(0.35 0.04 265)",
+          "oklch(0.45 0.04 265)",
+          "oklch(0.58 0.04 265)",
+          "oklch(0.7 0.04 265)",
+          "oklch(0.83 0.04 265)",
+          "oklch(0.95 0.04 265)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "夜间淡蓝",
+        "tonalRamp": [
+          "oklch(0.15 0.09 277)",
+          "oklch(0.25 0.09 277)",
+          "oklch(0.35 0.09 277)",
+          "oklch(0.45 0.09 277)",
+          "oklch(0.58 0.09 277)",
+          "oklch(0.7 0.09 277)",
+          "oklch(0.83 0.09 277)",
+          "oklch(0.95 0.09 277)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "古典中文标题",
+        "purpose": "首页两行标题；字形子集缺字由宋体系统字体回退。"
+      },
+      "body": {
+        "displayName": "阅读正文",
+        "purpose": "长文与工具、任务说明。"
+      },
+      "english": {
+        "displayName": "辅助英文",
+        "purpose": "跟随中文的栏目副标题。"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "art-follow",
+        "value": "transform .6s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "支持悬停且未启用减少动态效果时，首页插画横移±3px。"
+      },
+      {
+        "name": "button-feedback",
+        "value": "background .2s",
+        "purpose": "主入口悬停底色反馈。"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "home-mobile",
+        "value": "760px"
+      },
+      {
+        "name": "home-compact-desktop",
+        "value": "1200px"
+      },
+      {
+        "name": "utility-tablet",
+        "value": "900px"
+      },
+      {
+        "name": "utility-mobile",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "首页主入口",
+      "kind": "button",
+      "refersTo": "primary-link",
+      "description": "群青背景上的主要阅读入口。",
+      "html": "<a class=\"ds-primary\" href=\"#journal\">翻开我的札记</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:14px 30px;background:var(--l-white,#f7f3ea);color:var(--l-blue,#101bb4);font:600 18px 'GFS Didot','Songti SC',serif;text-decoration:none;border-radius:0;transition:background .2s}.ds-primary:hover{background:#dfd8c4}.ds-primary:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "次级入口",
+      "kind": "button",
+      "description": "首屏群青背景上的下划线入口。",
+      "html": "<div class=\"ds-blue\"><a class=\"ds-quiet\" href=\"#tools\">探索工具箱</a></div>",
+      "css": ".ds-blue{background:var(--l-blue,#101bb4);padding:20px}.ds-quiet{display:inline-block;color:var(--l-white,#f7f3ea);font:20px 'GFS Didot','Songti SC',serif;padding-block:14px;text-decoration:underline;text-underline-offset:8px}.ds-quiet:hover{color:#e5d3a7}.ds-quiet:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "课程入口",
+      "kind": "button",
+      "refersTo": "course-link",
+      "description": "任务旁的外部课程链接。",
+      "html": "<a class=\"ds-course\" href=\"#course\">打开课程</a>",
+      "css": ".ds-course{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;color:var(--accent,#101bb4);font:14px 'Microsoft YaHei',sans-serif;text-decoration:none;border:1px solid var(--line,#cecdc5);border-radius:2px}.ds-course:hover{border-color:var(--accent,#101bb4);background:var(--surface,#eeece3)}.ds-course:focus-visible{outline:2px solid currentColor;outline-offset:4px}"
+    },
+    {
+      "name": "课程标签",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "非交互的课程范围与说明。",
+      "html": "<span class=\"ds-tag\">重点</span>",
+      "css": ".ds-tag{display:inline-block;color:var(--ink,#182047);font:12px/1.8 'Microsoft YaHei',sans-serif;padding:2px 8px;border:1px solid var(--line,#cecdc5);border-radius:2px}"
+    },
+    {
+      "name": "备注区",
+      "kind": "custom",
+      "refersTo": "note",
+      "description": "承载课程补充说明，不添加浮动阴影。",
+      "html": "<aside class=\"ds-note\">课程备注</aside>",
+      "css": ".ds-note{background:var(--surface,#eeece3);padding:16px 20px;color:var(--ink-dim,#515972);font:14px/1.9 'Microsoft YaHei',sans-serif}"
+    },
+    {
+      "name": "栏目导航",
+      "kind": "nav",
+      "description": "独立页面的群青导航及当前栏目下划线。",
+      "html": "<nav class=\"ds-nav\" aria-label=\"栏目示例\"><a href=\"#home\">博客</a><a href=\"#tools\" aria-current=\"page\">工具箱</a></nav>",
+      "css": ".ds-nav{display:flex;gap:16px;background:var(--blue,#101bb4);padding:12px 24px}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--white,#f7f3ea);font:14px 'Microsoft YaHei',sans-serif;text-decoration:none}.ds-nav a[aria-current]{text-decoration:underline;text-underline-offset:8px}.ds-nav a:hover{color:#e4d3ab}.ds-nav a:focus-visible{outline:2px solid currentColor;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "知识殿堂",
+    "overview": "以用户选定的 C 方向为准：古典神话版画带来识别度，群青与象牙白形成明确的明暗关系，中文宋体气质的标题与克制的英文共同构成书籍式阅读体验。灵感来自 Hermes Agent 的古典视觉语言，不复制其品牌或文案。\n\n首页承担形象表达，文章、工具和规划优先满足阅读与操作。全站共享视觉语言，不要求每个页面重复大幅插画。中文承担信息与操作，英文仅作辅助。",
+    "keyCharacteristics": [
+      "群青大色块与银白神话版画。",
+      "宋体气质的中文标题、Didot 英文、无衬线正文。",
+      "细线与留白分组，近直角控件。",
+      "工具箱与规划独立，阅读和任务内容始终可见。"
+    ],
+    "rules": [
+      {
+        "name": "The Readable Ground Rule",
+        "body": "大幅艺术背景只承担形象表达，长正文留在清晰的纯色阅读区。",
+        "section": "colors"
+      },
+      {
+        "name": "The Chinese First Rule",
+        "body": "关键标题、链接和反馈使用中文；英文跟随对应中文，不替代操作名称。",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do 保持中文可读性，英文只作辅助。",
+      "Do 在浅色与深色主题分别检查对比度。",
+      "Do 保留搜索、键盘焦点、课程链接和原有进度存储。",
+      "Do 为插画提供替代文本、响应式尺寸和准确来源说明。"
+    ],
+    "donts": [
+      "Don't 把工具目录重新混入个人规划。",
+      "Don't 用装饰文字、动态效果或图片遮挡阅读与操作。",
+      "Don't 将标题字形子集误当作完整中文字体。",
+      "Don't 将 AI 插画描述成历史原作，或虚构文章与个人经历。"
+    ]
+  }
+}

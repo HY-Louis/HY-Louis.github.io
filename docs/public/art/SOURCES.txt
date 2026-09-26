@@ -1,3 +1,12 @@
+Athena in the Library — current homepage artwork
+Generated: 2026-09-26, JuCode Image API, gpt-image-2.5-flare.
+Original AI-generated classical engraving imagery; not a historical artwork.
+Files: athena-library.webp, athena-library-small.webp, /assets/plates/athena.png.
+Exact generation prompt is preserved in image metadata / accompanying JSON sidecars.
+Typeface: Noto Serif SC (heading subset), SIL Open Font License; license in /fonts/OFL-Noto-Serif-SC.txt.
+GFS Didot: existing self-hosted display typeface.
+
+Archived prior homepage artwork (not currently displayed):
 The Birth of Venus / La nascita di Venere
 Artist: Sandro Botticelli, circa 1484-1486.
 Source: https://commons.wikimedia.org/wiki/File:La_nascita_di_Venere_(Botticelli).jpg

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,17 +8,12 @@
 </head>
 <body>
 
-<div class="bg-field">
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
-</div>
-<div class="bg-grid"></div>
+<a class="skip-link" href="#main-content">跳到正文</a>
 
 <!-- ============ 顶栏 ============ -->
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="/"><span class="dot"></span>Louis</a>
+    <a class="brand" href="/">Louis</a>
     <nav class="pages" aria-label="页面切换">
       <a href="/">博客首页</a>
       <a href="index.html" class="on" aria-current="page">规划</a>
@@ -38,23 +33,22 @@
         <div class="overall-bar"><i id="overallBar"></i></div>
         <b id="overallText">0 / 0</b>
       </div>
-      <button class="iconbtn" id="themeBtn" title="切换深色 / 浅色模式" aria-label="切换深色或浅色模式">☀</button>
+      <button class="iconbtn" id="themeBtn" title="切换深色 / 浅色模式" aria-label="切换深色或浅色模式">深色</button>
     </div>
   </div>
 </div>
 
-<main class="wrap">
+<main class="wrap" id="main-content">
 
   <!-- ============ Hero ============ -->
   <section class="hero">
     <div class="reveal">
-      <div class="eyebrow">Louis · Academic Year 2026—2027</div>
       <h1>Louis 的<br><em>学年规划</em></h1>
+      <span class="page-english" lang="en">Learning Path · 2026—2027</span>
       <p>先稳住课程与基础，再把知识做成项目、题目与作品。每一门课都配好了直达链接，学完点一下左边的方框，进度会自动记住。</p>
     </div>
-    <div class="stamp reveal has-tilt tilt" data-tilt>
-      <div class="sheen"></div>
-      <div class="tilt-inner">
+    <div class="stamp reveal">
+            <div class="tilt-inner">
         <strong>9.14 → 3月后</strong>
         <small>起步：2026 年 9 月 14 日<br>计划可随时补充整改</small>
       </div>
@@ -66,21 +60,17 @@
     <h2 class="reveal">今年的四条主线</h2>
     <p class="section-sub reveal">月度任务是执行，这四条是判断「这一年过得好不好」的标准。</p>
     <div class="pillars">
-      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
-        <div class="sheen"></div>
-        <div class="tilt-inner"><b>成绩</b><span>第一学期 GPA 刷到 <strong>3.0+</strong>，第二学期后到 <strong>3.2+</strong></span></div>
+      <div class="pillar reveal">
+                <div class="tilt-inner"><b>成绩</b><span>第一学期 GPA 刷到 <strong>3.0+</strong>，第二学期后到 <strong>3.2+</strong></span></div>
       </div>
-      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
-        <div class="sheen"></div>
-        <div class="tilt-inner"><b>数学</b><span>张宇 30 讲起步，线代基础 + 强化全部听完，配套 1000 题</span></div>
+      <div class="pillar reveal">
+                <div class="tilt-inner"><b>数学</b><span>张宇 30 讲起步，线代基础 + 强化全部听完，配套 1000 题</span></div>
       </div>
-      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
-        <div class="sheen"></div>
-        <div class="tilt-inner"><b>计算机基础</b><span>操作系统、计算机组成原理完成核心章节，能写基础题与典型代码题</span></div>
+      <div class="pillar reveal">
+                <div class="tilt-inner"><b>计算机基础</b><span>操作系统、计算机组成原理完成核心章节，能写基础题与典型代码题</span></div>
       </div>
-      <div class="pillar reveal has-tilt tilt" data-tilt data-tilt-max="7">
-        <div class="sheen"></div>
-        <div class="tilt-inner"><b>工程能力</b><span>Java 全路线打穿，苍穹外卖手敲掌握，做出可运行的项目</span></div>
+      <div class="pillar reveal">
+                <div class="tilt-inner"><b>工程能力</b><span>Java 全路线打穿，苍穹外卖手敲掌握，做出可运行的项目</span></div>
       </div>
     </div>
   </section>
@@ -93,9 +83,8 @@
     <div class="month-list">
 
     <!-- ---- 09月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m09" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m09" data-month>
+            <div class="month-head">
         <div class="month-num">09</div>
         <div>
           <h3 class="month-title">基础启动</h3>
@@ -187,9 +176,8 @@
     </article>
 
     <!-- ---- 10月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m10" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m10" data-month>
+            <div class="month-head">
         <div class="month-num">10</div>
         <div>
           <h3 class="month-title">Java 路线推进</h3>
@@ -339,9 +327,8 @@
     </article>
 
     <!-- ---- 11月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m11" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m11" data-month>
+            <div class="month-head">
         <div class="month-num">11</div>
         <div>
           <h3 class="month-title">项目与报名</h3>
@@ -424,9 +411,8 @@
     </article>
 
     <!-- ---- 12月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m12" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m12" data-month>
+            <div class="month-head">
         <div class="month-num">12</div>
         <div>
           <h3 class="month-title">四级与期末</h3>
@@ -492,9 +478,8 @@
     </article>
 
     <!-- ---- 01月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m01" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m01" data-month>
+            <div class="month-head">
         <div class="month-num">01</div>
         <div>
           <h3 class="month-title">期末考试与美赛准备</h3>
@@ -554,9 +539,8 @@
     </article>
 
     <!-- ---- 02月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m02" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m02" data-month>
+            <div class="month-head">
         <div class="month-num">02</div>
         <div>
           <h3 class="month-title">美赛与蓝桥杯</h3>
@@ -618,9 +602,8 @@
     </article>
 
     <!-- ---- 03月 ---- -->
-    <article class="month-block reveal has-tilt tilt" id="m03" data-month data-tilt data-tilt-max="3">
-      <div class="sheen"></div>
-      <div class="month-head">
+    <article class="month-block reveal" id="m03" data-month>
+            <div class="month-head">
         <div class="month-num">03</div>
         <div>
           <h3 class="month-title">新阶段开启</h3>
@@ -719,18 +702,16 @@
   var KEY = 'louis-plan-2026-progress';
   var THEME_KEY = 'louis-plan-2026-theme';
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isTouch = window.matchMedia('(max-width: 880px), (hover: none)').matches;
 
   /* ---------- 1. 主题切换 ---------- */
   var themeBtn = document.getElementById('themeBtn');
   function applyTheme(t) {
     root.setAttribute('data-theme', t);
-    themeBtn.textContent = (t === 'dark') ? '☀' : '🌙';
+    themeBtn.textContent = (t === 'dark') ? '浅色' : '深色';
     try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
   }
-  var savedTheme = 'dark';
-  try { savedTheme = localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) {}
+  var savedTheme = 'light';
+  try { savedTheme = localStorage.getItem(THEME_KEY) || 'light'; } catch (e) {}
   applyTheme(savedTheme);
   themeBtn.addEventListener('click', function () {
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
@@ -794,57 +775,6 @@
       refresh();
     }
   });
-
-  /* ---------- 3. 3D 倾斜跟随鼠标 ---------- */
-  if (!isTouch && !reduceMotion) {
-    [].forEach.call(document.querySelectorAll('[data-tilt]'), function (el) {
-      var max = parseFloat(el.dataset.tiltMax || '9');
-      var raf = null;
-
-      function onMove(e) {
-        if (raf) return;
-        raf = requestAnimationFrame(function () {
-          raf = null;
-          var r = el.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width;
-          var py = (e.clientY - r.top) / r.height;
-          var rx = (0.5 - py) * max * 2;
-          var ry = (px - 0.5) * max * 2;
-          el.style.transform =
-            'perspective(1100px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateZ(12px)';
-          el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-          el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-        });
-      }
-      function onLeave() {
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        el.style.transform = '';
-      }
-
-      el.addEventListener('mousemove', onMove);
-      el.addEventListener('mouseleave', onLeave);
-    });
-  }
-
-  /* ---------- 4. 滚动淡入 ---------- */
-  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('in'); });
-  } else {
-    var ro = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.classList.add('in');
-          ro.unobserve(en.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
-
-    reveals.forEach(function (el, i) {
-      el.style.transitionDelay = Math.min(i * 45, 260) + 'ms';
-      ro.observe(el);
-    });
-  }
 
   /* ---------- 5. 顶栏高亮当前月份 ---------- */
   var navLinks = [].slice.call(document.querySelectorAll('.months a'));
