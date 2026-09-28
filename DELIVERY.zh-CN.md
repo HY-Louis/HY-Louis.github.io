@@ -384,11 +384,18 @@
 - 规划页 15 个 `<th>` 没有一个带 `scope`；主题切换按钮没有 `aria-pressed`；`reveal.js` 的 `opacity: 0` 留下过"焦点在看不见的链接上"的瞬间。
 - 仓库缺 `README.md` / `.nvmrc` / `engines` / `.gitattributes` / `.editorconfig`（`core.autocrlf=true` 且换行符在文件间混用），没有 lint / format；CI 里 5 个 action 全部落后当前主版本。
 - `check-content.mjs` 的断言过于字面（行数、BV 精确顺序等），正常增删一门课就会挂并挡住发布；`docs/public/plan/tools.html` 是无人链接的重定向壳但仍会发布。
+- 线上 404 页对不执行脚本的访客（爬虫、链接检查器、禁用脚本）是空白页：`404.html` 的 `<div id="app">` 为空、也没有 `noscript`，去掉脚本后可见文本只剩「404 | Louis」。真实浏览器由脚本渲染，功能正常。修法需要让 404 参与预渲染（如加 `docs/404.md`），会改变现有 404 外观，要先出样张再定。
 
 ## 上线记录（2026-09-28 本轮）
 
-- 提交：`（待补：见下一次提交）`
-- 推送与工作流：`（待补）`
-- 线上核对：`（待补）`
+- 提交：`00b224f`「接入古典风格改版第二轮，并修复焦点环与内容检查」，47 个文件，+1733 / −280。至此 09-27、09-28 两轮改动（此前 19 个文件从未进入任何提交）全部入库，工作区干净、无未跟踪文件。仓库为 `HY-Louis/HY-Louis.github.io`（用户主页仓库，所以 `base: '/'` 正确）。
+- 推送与工作流：`96e821b..00b224f main -> main`；工作流 run 12（<https://github.com/HY-Louis/HY-Louis.github.io/actions/runs/36419674787>），build 与 deploy 两步均 success。**新增的「检查页面内容」（`npm run check`）步骤首次在 CI 里真正跑起来并通过**——这正是本轮之前「只提交部分文件」会让 CI 以 `ENOENT` 挂掉的那一步。
+- 线上核对（2026-09-28，逐项抓取）：
+  - 首页：`<img>` 已指向 `/art/athena-library.jpg`（不再是被删掉的 `/assets/plates/athena.png`），首屏与末尾的工具箱入口都指向 `/tools/index.html`。
+  - `/tools/index.html`：分类已是「课程资源」，8 门公开课齐备且顺序正确，顶栏为 首页 / 博客 / 工具箱 / 关于。
+  - `/plan/index.html`：迷宫头图与图注已上线，藏书票读出「11 项」。
+  - 全部新资源返回 200：`favicon.svg`、`favicon.ico`（`image/vnd.microsoft.icon`，2183 字节）、`apple-touch-icon.png`、两个 WOFF2、`assets/theme.js`、`athena-library` 三份图、`art/generated/*.svg`、`art/SOURCES.txt`；`/blog/`、`/about/` 亦 200。
+  - 未知路径返回 HTTP 404，并落到站点根部的 `404.html`。
+- 本轮新发现（已记入上面「仍未处理」）：线上 `/404.html` 的 `<div id="app">` 是空的、没有 `noscript`，去掉脚本后可见文本只剩「404 | Louis」。真实浏览器会由脚本渲染出「此路未载于典籍。」（本地用 DevTools 协议核对过，`npm run verify` 也会读这一条），但**爬虫、链接检查器与禁用脚本的访客看到的是空白页**。修法需要 VitePress 层面的调整（例如加 `docs/404.md` 让 404 参与预渲染），会影响现有 404 外观，需先出样张再定，因此本轮未动。
 
 
