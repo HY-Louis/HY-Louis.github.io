@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 
 // 内容保全检查：学习规划（路线式，无打勾）+ 工具箱。
-// 期望值按「需求文档.md」和用户后续要求写死；以后主动增删课程或入口时，先改页面再改这里，
+// 期望值按用户历次确认的要求写死（改版经过记录在 DELIVERY.zh-CN.md）；以后主动增删课程或入口时，先改页面再改这里，
 // 不要为了让脚本通过而放宽检查——尤其是课程链接和已删除的入口。
 const read = (path) => readFileSync(path, 'utf8')
 const plan = read('docs/public/plan/index.html')
@@ -26,12 +26,54 @@ for (const stale of ['docs/public/plan/backend.html', 'docs/public/plan/cs408.ht
 assert.ok(!/<input|class="cb"|data-uid|louis-plan-2026-progress|stage-prog|overallBar|resetBtn/.test(plan),
   'index.html: 复选框、进度条与进度存储都应已移除')
 assert.ok(!/打勾|总进度|清空/.test(visible), 'index.html: 仍有打勾/进度的字样')
-assert.ok(plan.includes('louis-plan-2026-theme'), 'index.html: theme storage key changed')
+// 深色模式与博客共用 VitePress 的记录，由共享脚本在 <head> 里提前设定，避免白屏闪烁
+const themeJs = read('docs/public/assets/theme.js')
+assert.ok(themeJs.includes("'vitepress-theme-appearance'"), 'theme.js: 必须与博客共用 vitepress-theme-appearance')
+for (const [name, page] of [['plan', plan], ['tools', tools]]) {
+  const head = page.slice(0, page.indexOf('</head>'))
+  assert.ok(head.includes('assets/theme.js'), `${name}: 主题脚本要放在 <head> 里`)
+  assert.ok(head.includes('favicon.svg'), `${name}: 缺少网站图标`)
+  assert.ok(head.includes('name="description"'), `${name}: 缺少网页简介`)
+  assert.ok(!/louis-(plan-2026|tools)-theme/.test(page), `${name}: 不要再用各自独立的主题记录`)
+}
+
+/* ---------- 编码：防止中文被存成乱码 ---------- */
+// 2026-09-28 曾有工具用错编码写回文件，中文变成「瀛︿範」一类乱码或问号；这里把这类情况拦下来。
+// 同日复查：原先只查 7 个写死的文件，漏掉了 .vue / blog 文章 / .impeccable 下的文件（其中 4 份提示词确实带了 BOM）。
+// 现在改成遍历仓库里所有会发布或参与构建的文本文件；只放行下面三份「故意引用乱码样例」的文件。
+const MOJIBAKE = /\uFFFD|瀛︿|鐨|锛|銆|\?{3,}/
+const quotesMojibakeOnPurpose = new Set([
+  'DELIVERY.zh-CN.md',        // 记录那次事故时引用了乱码样例
+  'MAINTENANCE.zh-CN.md',     // 同上
+  'scripts/check-content.mjs', // 本文件，正则里就写着这些样例
+])
+const TEXT_EXT = new Set(['.md', '.html', '.css', '.mjs', '.js', '.vue', '.json', '.txt', '.yml', '.yaml', '.jsonl'])
+const SKIP_DIR = new Set(['node_modules', '.git', 'dist', 'cache', '.temp', 'generated', 'output'])
+const textFiles = []
+;(function walk(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) { if (!SKIP_DIR.has(entry.name)) walk(`${dir}/${entry.name}`); continue }
+    const dot = entry.name.lastIndexOf('.')
+    if (dot > 0 && TEXT_EXT.has(entry.name.slice(dot))) {
+      textFiles.push((dir === '.' ? entry.name : `${dir}/${entry.name}`).replace(/^\.\//, ''))
+    }
+  }
+})('.')
+assert.ok(textFiles.length > 40, `编码检查只扫到 ${textFiles.length} 个文本文件，遍历逻辑可能坏了`)
+for (const path of textFiles) {
+  const text = read(path)
+  assert.ok(!text.startsWith('\uFEFF'), `${path}: 文件开头多了 BOM 标记`)
+  if (!quotesMojibakeOnPurpose.has(path)) assert.ok(!MOJIBAKE.test(text), `${path}: 疑似乱码`)
+}
+assert.ok(plan.includes('<title>学习规划 · Louis</title>'), 'plan: 标题被改动或乱码')
+assert.ok(tools.includes('<title>学习工具 · Louis</title>'), 'tools: 标题被改动或乱码')
 
 /* ---------- 3. 结构：三个阶段 + 四门课 ---------- */
 assert.equal((plan.match(/data-stage[ >]/g) || []).length, 7, 'expected 3 stages + 4 courses')
 
-/* ---------- 4. 课程链接：后端 11 条 + 408 四条，共 15 门 ---------- */
+/* ---------- 4. 课程链接：后端 11 条 + 408 四条（页面上两条路线分开计数，不显示合计） ---------- */
+assert.ok(!/stamp-num">15</.test(plan) && !/15 门/.test(visible), '学习规划不要把两条路线的课程合并成 15 门')
+assert.ok(plan.includes('stamp-num">11<') && plan.includes('stamp-num">4<'), '藏书票应分别显示 11 项与 4 门')
 const bv = [...new Set(plan.match(/BV[\da-zA-Z]+/g) || [])]
 assert.equal(bv.length, 15, 'expected 15 course videos')
 const backendPart = plan.slice(plan.indexOf('id="backend"'), plan.indexOf('id="cs408"'))
@@ -43,7 +85,7 @@ assert.deepEqual(
   '408 must be 数据结构 → 计算机组成原理 → 操作系统 → 计算机网络'
 )
 
-/* ---------- 5. 章节学习指南按需求文档保留 ---------- */
+/* ---------- 5. 章节学习指南（内容以页面为准，原「需求文档」已由用户删除） ---------- */
 assert.equal((plan.match(/class="guide"/g) || []).length, 5, 'expected 5 chapter guides')
 assert.equal((plan.match(/<tr><td>/g) || []).length, 28, 'chapter guide rows changed')
 for (const text of [
@@ -80,11 +122,38 @@ for (const href of [
   'https://learn.lianglianglee.com/',
   'https://zh.z-library.sk/',
   'https://www.runoob.com/',
-  'https://app.netlify.com/drop',
-  'https://www.bilibili.com/video/BV1umZuBsEt5',
-  'https://www.bilibili.com/video/BV1c4411d7jb'
+  'https://app.netlify.com/drop'
 ]) {
   assert.ok(toolHrefs.includes(href), `工具箱缺少入口：${href}`)
+}
+// 「课程视频」已换成「课程资源」：8 门公开课，按用户给的顺序排列；原先的 15 门课程视频只留在学习规划里
+const coursesPart = tools.slice(tools.indexOf('id="courses"'), tools.indexOf('id="learn"'))
+assert.deepEqual(
+  [...coursesPart.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]),
+  [
+    'https://www.bilibili.com/video/BV1jsj86xE1X',
+    'https://www.bilibili.com/video/BV1sy411z7nA',
+    'https://www.bilibili.com/video/BV1gyM26ME4u',
+    'https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-january-iap-2010/pages/syllabus/',
+    'https://www.bilibili.com/video/BV1PkLQ68EPW',
+    'https://www.bilibili.com/video/BV1Cm4y1d7Ur',
+    'https://www.bilibili.com/video/BV1viJu6ME9y',
+    'https://www.bilibili.com/video/BV11LEA6eEuj'
+  ],
+  '工具箱「课程资源」的链接或顺序变了'
+)
+assert.ok(tools.includes('课程资源') && !tools.includes('课程视频'), '工具箱分类名应为「课程资源」')
+for (const bvid of bv) {
+  assert.ok(!tools.includes(bvid), `学习规划里的课程视频不该再出现在工具箱：${bvid}`)
+}
+assert.ok(!tools.includes('tilt-inner'), '工具箱里不该再有 tilt-inner 空壳')
+// 工具箱链接要写完整的 /tools/index.html：本地预览（npm run dev）不认 /tools/ 这种写法，会显示 404
+assert.ok(!(tools + read('docs/.vitepress/theme/Home.vue')).includes('href="/tools/"'), '指向工具箱的链接要写成 /tools/index.html')
+for (const href of ['/', '/blog/', '/tools/index.html', '/about/']) {
+  assert.ok(tools.includes(`<a href="${href}"`), `工具箱顶栏缺少链接：${href}`)
+}
+for (const href of ['/', '/blog/', '/about/']) {
+  assert.ok(plan.includes(`<a href="${href}"`), `学习规划顶栏缺少链接：${href}`)
 }
 for (const gone of [
   'hermes-agent.nousresearch.com', 'claude.com', 'claude.ai',
@@ -96,8 +165,6 @@ assert.ok(tools.includes('id="learn"') && tools.includes('学习资料'), '工�
 assert.ok(!tools.includes('id="exam"') && !tools.includes('英语与竞赛'), '「英语与竞赛」分类应当已删除')
 assert.equal((tools.match(/data-cat[ >]/g) || []).length, 5, '工具箱分类数应为 5')
 assert.ok(tools.includes('5 类 ·'), '工具箱 hero 上的分类数需要与分类保持一致')
-assert.ok(tools.includes('Beokayy_'))
-assert.ok(tools.includes('louis-tools-theme'))
 assert.ok(!/通义千问|Qwen|\d{1,2}月/.test(tools))
 assert.ok(!tools.includes('href="/plan/'))
 
@@ -120,4 +187,4 @@ assert.ok(home.includes('God helps those who help themselves.'), 'Home.vue: mott
 assert.ok(plan.includes('Louis · 天助自助者。'), 'plan/index.html: footer slogan changed')
 assert.ok(tools.includes('Louis · 天助自助者。'), 'tools/index.html: footer slogan changed')
 
-console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 门）与 408 学习（4 门课），共 15 条课程链接、5 份章节指南，结尾验收要求位于苍穹外卖条目内，且打勾与进度功能已移除；工具箱为 5 类（含新增 WorkBuddy / 技术文章摘抄 / 菜鸟教程 / Z-Library / Netlify Drop，已删 Hermes Agent、Claude 与英语竞赛分类）；公开页面无作者视角说明，格言统一为「天助自助者」。')
+console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 门）与 408 学习（4 门课），共 15 条课程链接、5 份章节指南，结尾验收要求位于苍穹外卖条目内，且打勾与进度功能已移除；工具箱为 5 类（「课程资源」为 8 门公开课，含 WorkBuddy / 技术文章摘抄 / 菜鸟教程 / Z-Library / Netlify Drop，已删 Hermes Agent、Claude 与英语竞赛分类）；两页与博客共用深色模式记录，带网站图标与网页简介，无乱码；公开页面无作者视角说明，格言统一为「天助自助者」。')

@@ -1,6 +1,6 @@
 /* Independent toolbox and learning path: shared classical reading system. */
-@font-face{font-family:'GFS Didot';src:url('/fonts/gfs-didot.ttf') format('truetype');font-display:swap}
-@font-face{font-family:'Louis Song';src:url('/fonts/noto-serif-sc-headings.ttf') format('truetype');font-display:swap;font-weight:400}
+@font-face{font-family:'GFS Didot';src:url('/fonts/gfs-didot.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'Louis Song';src:url('/fonts/noto-serif-sc-headings.woff2') format('woff2');font-display:swap;font-weight:400}
 :root{--blue:#101bb4;--white:#f7f3ea;--bg:#f5f2e9;--surface:#eeece3;--ink:#182047;--ink-dim:#515972;--muted:#60647a;--line:#cecdc5;--accent:#101bb4;--gold:#79591d;--rose:#944344;--cyan:#24645d;--serif:'GFS Didot','Louis Song','Songti SC','STSong','SimSun',serif}
 :root[data-theme='dark']{color-scheme:dark;--bg:#131a2c;--surface:#20293b;--ink:#f2eee3;--ink-dim:#c4cada;--muted:#b6bfd2;--line:#424b61;--accent:#b5beff;--gold:#e1c185;--rose:#efa6a5;--cyan:#9ed3c7}
 *{box-sizing:border-box}
@@ -31,18 +31,28 @@ button{font:inherit;cursor:pointer}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .page-english{display:block;margin:10px 0 22px;font:22px/1.5 'GFS Didot',serif;color:var(--muted)}
 .hero p{max-width:60ch;color:var(--ink-dim);margin:0;line-height:1.9}
-.stamp{padding:20px 0;border-top:1px solid var(--line)}
-.stamp strong{display:block;color:var(--accent);font:30px/1.4 var(--serif)}
-.stamp small{display:block;margin-top:12px;font-size:14px;color:var(--muted)}
+/* 页头右侧的「藏书票」：细线双边框、放大的数字、一行小英文，像旧书扉页上的标签 */
+.stamp{padding:22px 24px 20px;text-align:center;border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:3px}
+.stamp-english{display:block;font:14px/1.5 'GFS Didot',serif;letter-spacing:.14em;color:var(--muted)}
+.stamp strong{display:flex;justify-content:center;align-items:baseline;gap:8px;margin-top:6px;color:var(--accent);font:400 30px/1.4 var(--serif)}
+.stamp-num{font:64px/1 'GFS Didot',serif;font-variant-numeric:tabular-nums}
+.stamp-unit{font-size:18px}
+.stamp small{display:block;margin-top:12px;font-size:13px;line-height:1.8;color:var(--muted)}
+/* 学习规划的藏书票分成两栏：后端开发路线与 408 学习各算各的，中间一道细竖线 */
+.stamp-split{display:grid;grid-template-columns:1fr 1fr}
+.stamp-split>div+div{border-left:1px solid var(--line)}
+.stamp-split small{margin-top:4px}
 .section,.cat{margin-top:64px;scroll-margin-top:155px}
 .section>h2,.cat-head h2{font:32px/1.4 var(--serif);margin:0;color:var(--accent)}
+/* 章节标题前的小花饰 */
+.section>h2::before,.cat-head h2::before{content:"✦";display:inline-block;margin-right:14px;font-size:14px;vertical-align:.3em}
 .section-sub{margin:12px 0 26px;color:var(--muted);font-size:14px}
-.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:28px}
-.pillar{padding-top:20px;border-top:1px solid var(--line)}
-.pillar b{display:block;font:24px/1.5 var(--serif);margin-bottom:10px}
-.pillar span{font-size:14px;color:var(--ink-dim)}
-.pillar strong{color:var(--ink)}
-.stage-block{margin-top:48px;scroll-margin-top:155px}
+/* 学习规划的路线图：左侧一条细竖线把各阶段串起来，每个阶段头部对应线上的一个小圆点 */
+.stage-list{position:relative;padding-left:34px}
+.stage-list::before{content:"";position:absolute;left:5px;top:70px;bottom:24px;width:1px;background:var(--line)}
+.stage-block{position:relative;margin-top:48px;scroll-margin-top:155px}
+.stage-block::before{content:"";position:absolute;left:-34px;top:47px;width:11px;height:11px;border:1px solid var(--accent);border-radius:50%;background:var(--bg)}
+.stage-block:target::before{background:var(--accent)}
 .stage-head{display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding:24px 0;border-top:1px solid var(--accent);border-bottom:1px solid var(--line)}
 .stage-num{font:52px/1 'GFS Didot',serif;color:var(--accent);min-width:58px}
 .stage-title{font:27px/1.4 var(--serif);margin:0}
@@ -52,11 +62,10 @@ button{font:inherit;cursor:pointer}
 .course-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px}
 .course-name{font-weight:600;font-size:18px;line-height:1.6}
 .chip,.range{display:inline-block;font-size:12px;line-height:1.8;padding:2px 8px;border:1px solid var(--line);border-radius:2px}
-.chip.weekend,.range.pick{color:var(--gold)}
-.chip.exam,.range.skip{color:var(--rose)}
+/* 章节指南的三种要求：选择性听（金）、直接跳（玫瑰 + 删除线）、必须听（青绿）；课程标签沿用青绿 */
+.range.pick{color:var(--gold)}
+.range.skip{color:var(--rose);text-decoration:line-through}
 .chip.keep,.range.must{color:var(--cyan)}
-.chip.ai{color:var(--accent)}
-.range.skip{text-decoration:line-through}
 .go{margin-left:auto;display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;color:var(--accent);font-size:14px;text-decoration:none;border:1px solid var(--line);border-radius:2px}
 .go:hover{border-color:var(--accent);background:var(--surface)}
 .notes{font-size:15px;color:var(--ink-dim);margin-top:10px;line-height:1.95}
@@ -91,20 +100,21 @@ button{font:inherit;cursor:pointer}
 .tool span{font-size:14px;line-height:1.85;color:var(--ink-dim);display:block}
 .tool .host{font-family:inherit;font-size:12px;color:var(--accent);margin-top:14px;overflow-wrap:anywhere}
 .tool .tag{float:right;color:var(--muted);font-size:12px;border:1px solid var(--line);padding:1px 6px;margin:7px 0 8px 10px;letter-spacing:.05em}
-.tool:hover b,.course-row:hover b{color:var(--accent);text-decoration:underline;text-underline-offset:6px}
+/* 悬停时下划线从左往右画出来（用背景渐变模拟下划线，改变宽度即可） */
+.tool b,.course-row b{width:fit-content;max-width:100%;padding-bottom:2px;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;transition:background-size .35s ease,color .2s}
+.tool:hover b,.course-row:hover b{color:var(--accent);background-size:100% 1px}
+.pages a,.months a{background:linear-gradient(currentColor,currentColor) no-repeat 0 calc(100% - 8px)/0 1px;transition:background-size .3s ease}
+.pages a:not(.on):hover,.months a:not(.active):hover{background-size:100% 1px}
 .course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
 .course-row{display:flex;align-items:center;gap:16px;padding:22px 0;border-top:1px solid var(--line);text-decoration:none}
-.course-row .idx{display:none}
 .course-row .txt{min-width:0}
 .course-row b{display:block;font-size:17px;font-weight:600;overflow-wrap:anywhere}
 .course-row small{display:block;color:var(--muted);font-size:13px;margin-top:6px}
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:64px;padding-top:26px;color:var(--muted);font-size:13px}
 footer a{display:inline-flex;align-items:center;min-height:44px}
-.reveal{opacity:1;transform:none}
 @media(max-width:900px){
  .wrap{padding-inline:24px}.topbar-inner{padding:10px 24px;gap:8px 22px}
- .hero{gap:36px;padding-top:48px}.hero h1{font-size:44px}
- .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero{gap:36px;padding-top:48px}.hero h1{font-size:44px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .checklist li{grid-template-columns:36px minmax(0,1fr);gap:12px}
  .pages{gap:12px}.months{gap:22px}
 }
@@ -113,9 +123,10 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
  .pages{gap:12px}.pages a{font-size:12px}.tools{gap:8px}.iconbtn{min-width:48px;padding-inline:6px}
  .months{gap:20px}.months a{font-size:13px}
  .hero{grid-template-columns:1fr;gap:28px;padding:54px 0 32px}.hero h1{font-size:40px}
- .page-english{font-size:20px}.stamp{padding-top:16px}.stamp strong{font-size:26px}
- .section,.cat{margin-top:44px}.section>h2,.cat-head h2{font-size:28px}.pillars{gap:24px}
- .pillar b{font-size:22px}.stage-head{gap:12px}.stage-title{font-size:24px}.stage-num{font-size:44px;min-width:50px}
+ .page-english{font-size:20px}.stamp{padding:18px 16px 16px}.stamp-num{font-size:52px}.stamp-unit{font-size:16px}
+ .section,.cat{margin-top:44px}.section>h2,.cat-head h2{font-size:28px}.section>h2::before,.cat-head h2::before{margin-right:10px;font-size:12px}
+ .stage-list{padding-left:24px}.stage-list::before{left:4px;top:62px}.stage-block::before{left:-24px;top:40px;width:9px;height:9px}
+ .stage-head{gap:12px}.stage-title{font-size:24px}.stage-num{font-size:44px;min-width:50px}
  .stage-tagline{font-size:13px}
  .course-name{font-size:17px}.go{margin-left:0}
  .tool-grid,.course-grid{grid-template-columns:1fr}.tool{padding-block:22px}.tool b{font-size:25px}
@@ -133,5 +144,49 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
  .warn,.stage-foot,.note-box{padding:14px;font-size:14px}.notes{font-size:15px}
  footer{margin-top:44px;gap:8px}
 }
+/* 超窄屏（约 320px）：顶栏四个页面链接 + 主题按钮挤在一行，收紧间距，避免按钮被挤到第二行 */
+@media(max-width:380px){
+ .topbar-inner{gap:8px 10px;padding-inline:16px}.brand{font-size:26px}.pages{gap:8px}.tools{gap:0}.iconbtn{min-width:44px}
+}
+/* ==========================================================================
+   质感、装饰与程序化图案（2026-09-28 第二轮，和博客 theme/style.css 的同名一节对应）
+   图案文件由 scripts/generate-art.mjs 在打包时生成到 /art/generated/
+   ========================================================================== */
+/* 哑光金只作装饰点缀（✦、藏书票外框、迷宫之线）；--gold 是章节指南标签用的深金，保持不变 */
+:root{--gold-deco:#8a6526;--ease:cubic-bezier(.16,1,.3,1)}
+:root[data-theme='dark']{--gold-deco:#e1c185}
+/* 页头铺一层纸纹（深色模式换成星点），左右一直铺到窗口边缘；正文区保持纯色底 */
+body{overflow-x:clip}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);z-index:-1;pointer-events:none;background:url('/art/generated/paper-grain.svg') 0 0/240px 240px;opacity:.1}
+:root[data-theme='dark'] .hero::before{background:#e8ecff;opacity:.4;-webkit-mask:url('/art/generated/stars.svg') 0 0/560px 560px;mask:url('/art/generated/stars.svg') 0 0/560px 560px}
+/* 金色点缀：章节 ✦ 与藏书票的外框 */
+.section>h2::before,.cat-head h2::before{color:var(--gold-deco)}
+.stamp{outline-color:var(--gold-deco)}
+/* 学习规划页头图：程序化迷宫 + 一根金色的阿里阿德涅之线（打开页面时从左往右"牵"出来） */
+.labyrinth{margin:40px 0 0}
+.labyrinth-art{position:relative;aspect-ratio:904/184}
+.labyrinth-art span{position:absolute;inset:0;-webkit-mask:var(--m) left center/100% 100% no-repeat;mask:var(--m) left center/100% 100% no-repeat}
+.labyrinth-walls{--m:url('/art/generated/labyrinth-walls.svg');background:var(--accent);opacity:.5}
+.labyrinth-thread{--m:url('/art/generated/labyrinth-thread.svg');background:var(--gold-deco)}
+.labyrinth figcaption{margin-top:12px;font-size:13px;color:var(--muted)}
+.labyrinth figcaption span{font:15px/1.5 'GFS Didot',serif;letter-spacing:.06em;margin-left:10px}
+/* 路线随滚动"生长"：浅色底线之上再叠一条群青线，长度由页面脚本按滚动位置设定（--grow 从 0 到 1）；
+   阶段圆点在线经过时点亮（is-lit）。没有脚本或设置了"减少动态效果"时保持原样。 */
+.stage-list::after{content:"";position:absolute;left:5px;top:70px;bottom:24px;width:1px;background:var(--accent);transform-origin:top;transform:scaleY(var(--grow,0))}
+.stage-block.is-lit::before{background:var(--accent)}
+/* 入场浮现：theme.js 给还没进入屏幕的 .reveal 块打上 reveal-wait，进入屏幕时加 is-in */
+@media(prefers-reduced-motion:no-preference){
+ .reveal-wait{opacity:0;transform:translateY(8px)}
+ .reveal-wait.is-in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+ .labyrinth-thread{animation:thread-draw 3.2s var(--ease) .3s both}
+}
+@keyframes thread-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media(max-width:600px){
+ .stage-list::after{left:4px;top:62px}
+ .labyrinth{margin-top:28px}
+ .labyrinth-art{aspect-ratio:auto;height:110px}
+ .labyrinth-art span{-webkit-mask-size:auto 100%;mask-size:auto 100%}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-@media print{.topbar,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.stage-block{break-inside:avoid}.guide tr{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}
+@media print{.reveal-wait{opacity:1!important;transform:none!important}.hero::before,.labyrinth{display:none}.topbar,.skip-link{display:none}body{background:#fff;color:#000}.wrap{max-width:none;padding:0}.stage-block{break-inside:avoid}.guide tr{break-inside:avoid}.hero{padding-top:0}.go{border:0}.notes,.hero p{color:#333}}

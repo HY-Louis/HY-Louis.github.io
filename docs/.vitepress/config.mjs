@@ -1,4 +1,18 @@
 import { defineConfig } from 'vitepress'
+import { readdirSync, readFileSync } from 'node:fs'
+
+// 博客侧栏自动生成：读 docs/blog/ 里每篇文章开头的 title 与 date，最新的排在最上面。
+// 写新文章只要新建 md 文件并填好开头信息，这里不用手改。
+const blogItems = readdirSync(new URL('../blog/', import.meta.url))
+  .filter((name) => name.endsWith('.md') && name !== 'index.md')
+  .map((name) => {
+    const source = readFileSync(new URL(`../blog/${name}`, import.meta.url), 'utf8')
+    const title = source.match(/^title:\s*(.+)$/m)?.[1]?.trim() || name.replace(/\.md$/, '')
+    const date = source.match(/^date:\s*(.+)$/m)?.[1]?.trim() || ''
+    return { text: title, link: `/blog/${name.replace(/\.md$/, '')}`, date }
+  })
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map(({ text, link }) => ({ text, link }))
 
 export default defineConfig({
   // ========================================================
@@ -26,6 +40,10 @@ export default defineConfig({
   ignoreDeadLinks: [/^\/(?:plan|tools)\//],
 
   head: [
+    // 浏览器标签页上的小图标：新浏览器用 svg，老浏览器用 ico，苹果设备加到主屏幕时用 png
+    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
+    ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
     ['meta', { name: 'theme-color', content: '#101bb4' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Louis 的个人博客' }],
@@ -38,7 +56,7 @@ export default defineConfig({
     // 顶部导航栏
     // 工具箱不放在这里：首页首屏与「入口」区都已经有工具箱入口，导航只留内容栏目。
     // 「学习规划」指向 docs/public/ 里的手写 HTML，必须带 target: '_self'：
-    //   VitePress 的路由会拦截站内链接（/plan/index.html 与 /tools/ 这类静态页也会被当成
+    //   VitePress 的路由会拦截站内链接（/plan/index.html 与 /tools/index.html 这类静态页也会被当成
     //   自己管理的页面）并跳到 404；源码里只要链接带了 target 属性就会跳过拦截，
     //   所以这里用 _self —— 既绕开路由，又在当前标签页打开，不新开窗口。
     nav: [
@@ -55,7 +73,7 @@ export default defineConfig({
           text: '全部文章',
           items: [
             { text: '文章列表', link: '/blog/' },
-            { text: '我的博客是怎么搭起来的', link: '/blog/how-i-built-this-blog' },
+            ...blogItems,
           ],
         },
       ],

@@ -4,7 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>学习工具 · Louis</title>
+<meta name="description" content="Louis 收藏的 AI 工具、刷题平台、开发工具、课程资源与学习资料，全部官网直达。" />
+<meta property="og:title" content="学习工具 · Louis" />
+<meta property="og:description" content="AI 工具、刷题平台、开发工具、课程资源与学习资料，全部官网直达。" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="stylesheet" href="../assets/site-pages.css" />
+<script src="../assets/theme.js"></script>
 </head>
 <body>
 
@@ -15,14 +22,16 @@
   <div class="topbar-inner">
     <a class="brand" href="/">Louis</a>
     <nav class="pages" aria-label="页面切换">
-      <a href="/">博客首页</a>
-      <a href="/tools/" class="on" aria-current="page">工具</a>
+      <a href="/">首页</a>
+      <a href="/blog/">博客</a>
+      <a href="/tools/index.html" class="on" aria-current="page">工具箱</a>
+      <a href="/about/">关于</a>
     </nav>
     <nav class="months" aria-label="分类跳转">
       <a href="#ai">AI 工具</a>
       <a href="#oj">刷题平台</a>
       <a href="#dev">开发工具</a>
-      <a href="#courses">课程视频</a>
+      <a href="#courses">课程资源</a>
       <a href="#learn">学习资料</a>
     </nav>
     <div class="tools">
@@ -38,13 +47,12 @@
     <div class="reveal">
       <h1>学习<em>工具箱</em></h1>
       <span class="page-english" lang="en">A collection of useful things · Toolbox</span>
-      <p>常用的 AI 工具、刷题平台、开发工具、课程视频和学习资料，全部官网直达，不用再搜。</p>
+      <p>常用的 AI 工具、刷题平台、开发工具、课程资源和学习资料，全部官网直达，不用再搜。</p>
     </div>
     <div class="stamp reveal">
-            <div class="tilt-inner">
-        <strong>5 类 · <span id="totalCount">0</span> 个入口</strong>
-        <small>AI 工具 · 刷题 · 开发 · 课程 · 学习资料<br>随时补充</small>
-      </div>
+      <span class="stamp-english" lang="en">Ex Libris · Louis</span>
+      <strong><span class="stamp-num" id="totalCount">0</span><span class="stamp-unit">个入口</span></strong>
+      <small>5 类 · AI 工具 · 刷题 · 开发 · 课程 · 学习资料</small>
     </div>
   </section>
 
@@ -57,66 +65,50 @@
     </div>
     <div class="tool-grid">
       <a class="tool reveal" href="https://www.workbuddy.cn/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">AGENT</span>
           <b>WorkBuddy</b>
           <span>腾讯的 AI 智能体办公工作台，把日常事务交给 Agent 去跑。</span>
           <span class="host">workbuddy.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.deepseek.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">免费</span>
           <b>DeepSeek</b>
           <span>国产大模型，网页版和 App 免费。写代码、讲概念都很顺手，国内直连不用折腾网络。</span>
           <span class="host">deepseek.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://openai.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>OpenAI</b>
           <span>ChatGPT 背后的公司。官网看模型发布和 API 文档，日常对话直接去 chatgpt.com。</span>
           <span class="host">openai.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://qoder.com.cn/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">IDE</span>
           <b>Qoder CN</b>
           <span>阿里出的 AI 编程 IDE 中国站。能整体理解代码库，把复杂任务委托给 AI 代理执行。</span>
           <span class="host">qoder.com.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://cursor.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">IDE</span>
           <b>Cursor</b>
           <span>目前最流行的 AI 编辑器，基于 VS Code 改造。和 Qoder 是同类，二选一用熟就行。</span>
           <span class="host">cursor.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://github.com/features/copilot" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">学生免费</span>
           <b>GitHub Copilot</b>
           <span>装在 IDEA / VS Code 里的代码补全。用学校邮箱认证 GitHub 学生包可以免费用。</span>
           <span class="host">github.com/features/copilot</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://gemini.google.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>Gemini</b>
           <span>Google 的模型。多模态和长上下文强，看图讲题、整理一整本 PDF 讲义时可以用。</span>
           <span class="host">gemini.google.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.kimi.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">免费</span>
           <b>Kimi</b>
           <span>月之暗面的模型，适合长文档阅读、内容总结和资料整理。</span>
           <span class="host">kimi.com</span>
-        </div>
       </a>
     </div>
   </section>
@@ -130,41 +122,31 @@
     </div>
     <div class="tool-grid">
       <a class="tool reveal" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag hot">推荐</span>
           <b>灵神题单 · 如何科学刷题</b>
           <span>LeetCode 中文社区公认最系统的刷题顺序，按专题递进，不用自己瞎挑题。</span>
           <span class="host">leetcode.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://leetcode.cn/problemset/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>LeetCode 题库</b>
           <span>按标签和难度筛题，刷题主战场。</span>
           <span class="host">leetcode.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.luogu.com.cn/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>洛谷</b>
           <span>国内算法竞赛刷题站，蓝桥杯备战主要靠它。</span>
           <span class="host">luogu.com.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://dasai.lanqiao.cn/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>蓝桥杯官网</b>
           <span>报名、赛程、真题和模拟赛都在这里。</span>
           <span class="host">dasai.lanqiao.cn</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://xiaolincoding.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">八股</span>
           <b>小林 coding</b>
           <span>图解计网、操作系统、MySQL、Redis 的面试知识点。面试前背八股就从这里背。</span>
           <span class="host">xiaolincoding.com</span>
-        </div>
       </a>
     </div>
   </section>
@@ -178,127 +160,77 @@
     </div>
     <div class="tool-grid">
       <a class="tool reveal" href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">学生免费</span>
           <b>IntelliJ IDEA</b>
           <span>Java 开发的主力编辑器。社区版免费，用学校邮箱申请 JetBrains 学生包能解锁旗舰版。</span>
           <span class="host">jetbrains.com/idea</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.jetbrains.com/datagrip/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>DataGrip</b>
           <span>图形化的数据库管理工具，看表、写 SQL 比命令行直观得多。</span>
           <span class="host">jetbrains.com/datagrip</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://apifox.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>Apifox</b>
           <span>接口测试工具。写完后端接口，用它验证能不能返回正确数据。</span>
           <span class="host">apifox.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://git-scm.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>Git 官网</b>
           <span>下载安装包的地方。代码存档和「后悔药」工具，所有项目都要用。</span>
           <span class="host">git-scm.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.docker.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>Docker 官网</b>
           <span>下载 Docker Desktop。Windows 上装之前要先开 WSL2。</span>
           <span class="host">docker.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://code.visualstudio.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">免费</span>
           <b>VS Code</b>
           <span>轻量万能编辑器。看前端代码、改配置文件、写 Markdown 笔记都用它，比 IDEA 启动快。</span>
           <span class="host">code.visualstudio.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://app.netlify.com/drop" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag free">免费</span>
           <b>Netlify Drop</b>
           <span>把打包好的文件夹直接拖进网页就能拿到一个网址，不用命令行，静态页面发布最快的方式。</span>
           <span class="host">app.netlify.com/drop</span>
-        </div>
       </a>
     </div>
   </section>
 
-  <!-- ============ 课程视频 ============ -->
+  <!-- ============ 课程资源 ============ -->
   <section class="cat" id="courses" data-cat>
     <div class="cat-head reveal">
-      <h2>课程视频</h2>
-      <p>按技术栈排。想复习某一门直接从这里进。</p>
+      <h2>课程资源</h2>
+      <p>国内外名校的计算机公开课，大多有中文字幕或中文配音。</p>
       <span class="count"></span>
     </div>
     <div class="course-grid">
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV17F411T7Ao" target="_blank" rel="noopener">
-                <span class="idx">01</span>
-        <span class="txt"><b>JavaSE（上部）</b><small>Java 基础 · 黑马程序员</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1jsj86xE1X" target="_blank" rel="noopener">
+        <span class="txt"><b>计算机教育中缺失的一课</b><small>MIT Missing Semester · 中文配音</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1yW4y1Y7Ms" target="_blank" rel="noopener">
-                <span class="idx">02</span>
-        <span class="txt"><b>JavaSE（下部）</b><small>Java 基础 · 集合 / IO / 多线程</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1sy411z7nA" target="_blank" rel="noopener">
+        <span class="txt"><b>CS61A</b><small>UC Berkeley · 计算机程序的结构与解释 · 双语字幕</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1umZuBsEt5" target="_blank" rel="noopener">
-                <span class="idx">03</span>
-        <span class="txt"><b>数据结构</b><small>计算机基础 · 408</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1gyM26ME4u" target="_blank" rel="noopener">
+        <span class="txt"><b>CS61C</b><small>UC Berkeley · 计算机体系结构 · 中文版</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV18TZuBQE5q" target="_blank" rel="noopener">
-                <span class="idx">04</span>
-        <span class="txt"><b>计算机组成原理</b><small>计算机基础 · Beokayy_（b姐）</small></span>
+      <a class="course-row reveal" href="https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-january-iap-2010/pages/syllabus/" target="_blank" rel="noopener">
+        <span class="txt"><b>Java 语言</b><small>MIT OpenCourseWare · 6.092 Java 编程入门 · 英文</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1YE411D7nH" target="_blank" rel="noopener">
-                <span class="idx">05</span>
-        <span class="txt"><b>操作系统</b><small>计算机基础 · 王道考研</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1PkLQ68EPW" target="_blank" rel="noopener">
+        <span class="txt"><b>数据结构与算法</b><small>UC Berkeley CS61B · 中英字幕</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1c4411d7jb" target="_blank" rel="noopener">
-                <span class="idx">06</span>
-        <span class="txt"><b>计算机网络</b><small>计算机基础 · 408</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1Cm4y1d7Ur" target="_blank" rel="noopener">
+        <span class="txt"><b>蒋炎岩操作系统</b><small>南京大学 · 操作系统：设计与实现</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1Kr4y1i7ru" target="_blank" rel="noopener">
-                <span class="idx">07</span>
-        <span class="txt"><b>MySQL 数据库</b><small>数据库 · 黑马程序员</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1viJu6ME9y" target="_blank" rel="noopener">
+        <span class="txt"><b>计算机网络</b><small>Stanford CS144 · 计算机网络导论 · 中文配音</small></span>
       </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1s3411K7jH" target="_blank" rel="noopener">
-                <span class="idx">08</span>
-        <span class="txt"><b>JDBC</b><small>数据库 · Java 连接数据库</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1cr4y1671t" target="_blank" rel="noopener">
-                <span class="idx">09</span>
-        <span class="txt"><b>Redis</b><small>数据库 · 内存缓存</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1m84y1w7Tb" target="_blank" rel="noopener">
-                <span class="idx">10</span>
-        <span class="txt"><b>JavaWeb</b><small>后端 · 黑马程序员</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV15b4y1a7yG" target="_blank" rel="noopener">
-                <span class="idx">11</span>
-        <span class="txt"><b>SpringBoot</b><small>后端 · Java 主流框架</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1TP411v7v6" target="_blank" rel="noopener">
-                <span class="idx">12</span>
-        <span class="txt"><b>苍穹外卖</b><small>项目实战 · 黑马程序员</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1pX4y1S7Dq" target="_blank" rel="noopener">
-                <span class="idx">13</span>
-        <span class="txt"><b>Git</b><small>工程工具 · 版本控制</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1cq421w72c" target="_blank" rel="noopener">
-                <span class="idx">14</span>
-        <span class="txt"><b>Linux 基本命令</b><small>工程工具 · 命令行基础</small></span>
-      </a>
-      <a class="course-row reveal" href="https://www.bilibili.com/video/BV1HP4118797" target="_blank" rel="noopener">
-                <span class="idx">15</span>
-        <span class="txt"><b>Docker</b><small>工程工具 · 容器与环境打包</small></span>
+      <a class="course-row reveal" href="https://www.bilibili.com/video/BV11LEA6eEuj" target="_blank" rel="noopener">
+        <span class="txt"><b>CS336</b><small>Stanford · 从零构建大语言模型 · 中文配音</small></span>
       </a>
     </div>
   </section>
@@ -312,27 +244,21 @@
     </div>
     <div class="tool-grid">
       <a class="tool reveal" href="https://learn.lianglianglee.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">文章</span>
           <b>技术文章摘抄</b>
           <span>把散在各处的技术文章按主题整理到一起，后端、架构、数据库都能翻到。</span>
           <span class="host">learn.lianglianglee.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://www.runoob.com/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <b>菜鸟教程</b>
           <span>中文入门教程站。Java、MySQL、Git、Linux 这些都有，语法忘了随手查。</span>
           <span class="host">runoob.com</span>
-        </div>
       </a>
       <a class="tool reveal" href="https://zh.z-library.sk/" target="_blank" rel="noopener">
-                <div class="tilt-inner">
           <span class="tag">电子书</span>
           <b>Z-Library</b>
           <span>电子书资源站，按书名或作者搜索，可以下 PDF 和 EPUB。</span>
           <span class="host">zh.z-library.sk</span>
-        </div>
       </a>
     </div>
   </section>
@@ -351,21 +277,7 @@
 <script>
 (function () {
   'use strict';
-  var THEME_KEY = 'louis-tools-theme';
-  var root = document.documentElement;
-
-  var themeBtn = document.getElementById('themeBtn');
-  function applyTheme(t) {
-    root.setAttribute('data-theme', t);
-    themeBtn.textContent = (t === 'dark') ? '浅色' : '深色';
-    try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
-  }
-  var saved = 'light';
-  try { saved = localStorage.getItem(THEME_KEY) || 'light'; } catch (e) {}
-  applyTheme(saved);
-  themeBtn.addEventListener('click', function () {
-    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
+  // 深色 / 浅色切换在 ../assets/theme.js 里，与博客共用同一个记录
 
   var total = 0;
   [].forEach.call(document.querySelectorAll('[data-cat]'), function (cat) {

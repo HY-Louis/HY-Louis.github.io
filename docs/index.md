@@ -6,14 +6,7 @@ description: 在知识的旷野，留下自己的路径。Louis 的技术札记�
 home:
   title: 在知识的旷野，
   titleSecond: 留下自己的路径。
-  description: 我是 Louis。在这里记录代码、问题与思考，把学过的东西写下来，让每一次探索都有迹可循。
   motto: 天助自助者。
-  article:
-    title: 我的博客是怎么搭起来的
-    description: 从第一份 Markdown 到自己的线上空间，记录 VitePress、GitHub Pages 与图床的搭建过程。
-    link: /blog/how-i-built-this-blog
-    category: 建站手记
-    date: 2026 年 9 月
   subjects:
     - title: Java 后端
       english: BACKEND

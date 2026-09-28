@@ -1,8 +1,17 @@
+---
+title: 我的博客是怎么搭起来的
+date: 2026-09-15
+description: 从第一份 Markdown 到自己的线上空间，记录 VitePress、GitHub Pages 与图床的搭建过程。
+category: 建站手记
+---
+
 # 我的博客是怎么搭起来的
 
 这是这个博客的第一篇文章，顺便记录一下搭建过程，免得以后自己忘了。
 
 ## 整体方案
+
+<aside class="margin-note">Markdown 是一种用简单符号排版的纯文本写法：行首写 <code>#</code> 就是标题，两边加 <code>**</code> 就是加粗。</aside>
 
 | 环节 | 用什么 | 花多少钱 |
 | --- | --- | --- |
@@ -43,7 +52,11 @@ git push
 
 ## 踩到的坑
 
+<aside class="margin-note">举个例子：仓库名叫 <code>blog</code>，网址就是 <code>用户名.github.io/blog/</code>，<code>base</code> 要填 <code>/blog/</code>。</aside>
+
 **base 配置填错，网站一片空白。** `docs/.vitepress/config.mjs` 里有个 `base` 选项，它表示网站在域名下的子目录。仓库名叫 `用户名.github.io` 就填 `/`，仓库名叫别的就填 `/仓库名/`。填错了页面能打开但样式全丢。
+
+<aside class="margin-note">图床是专门存图片的地方，文章里只写图片的网址。PicGo 是上传图片的小工具，拖进去就能传到图床并复制好网址。</aside>
 
 **图片不要直接塞进仓库。** 图片体积大，仓库会越来越臃肿。用图床存，文章里引网址。
 

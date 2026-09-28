@@ -4,7 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>学习规划 · Louis</title>
+<meta name="description" content="Louis 的后端开发与 408 学习路线，按阶段整理课程、章节指南与项目验收要求。" />
+<meta property="og:title" content="学习规划 · Louis" />
+<meta property="og:description" content="后端开发与 408 学习路线，按阶段整理课程、章节指南与项目验收要求。" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="stylesheet" href="../assets/site-pages.css" />
+<script src="../assets/theme.js"></script>
 </head>
 <body>
 
@@ -15,8 +22,10 @@
   <div class="topbar-inner">
     <a class="brand" href="/">Louis</a>
     <nav class="pages" aria-label="页面切换">
-      <a href="/">博客首页</a>
+      <a href="/">首页</a>
+      <a href="/blog/">博客</a>
       <a href="index.html" class="on" aria-current="page">学习规划</a>
+      <a href="/about/">关于</a>
     </nav>
     <nav class="months" aria-label="路线跳转">
       <a href="#backend">后端开发路线</a>
@@ -38,10 +47,20 @@
       <p>从 Java 语言基础出发，走到能跑起来的后端项目，再补上计算机的四门基础课。每门课都配好了直达链接与章节学习指南，按顺序往下走就行。</p>
     </div>
     <div class="stamp reveal">
-      <strong>两条路线</strong>
-      <small>后端开发路线 · 11 项<br>408 学习 · 4 门课</small>
+      <span class="stamp-english" lang="en">Learning Path · Louis</span>
+      <!-- 两条路线分开计数，不合并成一个总数 -->
+      <div class="stamp-split">
+        <div><strong><span class="stamp-num">11</span><span class="stamp-unit">项</span></strong><small>后端开发路线</small></div>
+        <div><strong><span class="stamp-num">4</span><span class="stamp-unit">门</span></strong><small>408 学习</small></div>
+      </div>
     </div>
   </section>
+
+  <!-- ============ 头图：程序化迷宫（scripts/generate-art.mjs 生成），金线是走出迷宫的那条路 ============ -->
+  <figure class="labyrinth">
+    <div class="labyrinth-art" aria-hidden="true"><span class="labyrinth-walls"></span><span class="labyrinth-thread"></span></div>
+    <figcaption>阿里阿德涅之线：顺着一条线，就能走出迷宫。<span lang="en">Ariadne&rsquo;s Thread</span></figcaption>
+  </figure>
 
   <!-- ============ 路线一：后端开发 ============ -->
   <section class="section" id="backend" data-route>
@@ -450,24 +469,9 @@
 (function () {
   'use strict';
 
-  var THEME_KEY = 'louis-plan-2026-theme';
-  var root = document.documentElement;
+  // 深色 / 浅色切换在 ../assets/theme.js 里，与博客共用同一个记录
 
-  /* ---------- 1. 主题切换 ---------- */
-  var themeBtn = document.getElementById('themeBtn');
-  function applyTheme(t) {
-    root.setAttribute('data-theme', t);
-    themeBtn.textContent = (t === 'dark') ? '浅色' : '深色';
-    try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
-  }
-  var savedTheme = 'light';
-  try { savedTheme = localStorage.getItem(THEME_KEY) || 'light'; } catch (e) {}
-  applyTheme(savedTheme);
-  themeBtn.addEventListener('click', function () {
-    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-
-  /* ---------- 2. 顶栏高亮当前路线 ---------- */
+  /* ---------- 顶栏高亮当前路线 ---------- */
   var navLinks = [].slice.call(document.querySelectorAll('.months a'));
   var navMap = {};
   navLinks.forEach(function (a) { navMap[a.getAttribute('href').slice(1)] = a; });
@@ -484,6 +488,34 @@
       });
     }, { rootMargin: '-88px 0px -68% 0px', threshold: 0 });
     [].forEach.call(document.querySelectorAll('[data-route]'), function (el) { io.observe(el); });
+  }
+
+  /* ---------- 路线随滚动"生长" ----------
+     想象屏幕上有一条看不见的"阅读线"（离顶部 62% 高度）：竖线从每条路线的起点一直长到阅读线的位置，
+     阶段圆点被阅读线越过时点亮。设置了"减少动态效果"时不运行，页面保持静止的原样。 */
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    var lists = [].slice.call(document.querySelectorAll('.stage-list'));
+    var blocks = [].slice.call(document.querySelectorAll('.stage-block'));
+    var ticking = false;
+    var grow = function () {
+      ticking = false;
+      var line = window.innerHeight * 0.62;
+      lists.forEach(function (list) {
+        var box = list.getBoundingClientRect();
+        var after = getComputedStyle(list, '::after');
+        var start = parseFloat(after.top) || 70;
+        var length = box.height - start - (parseFloat(after.bottom) || 24);
+        var progress = (line - box.top - start) / Math.max(1, length);
+        list.style.setProperty('--grow', Math.min(1, Math.max(0, progress)).toFixed(4));
+      });
+      blocks.forEach(function (block) {
+        var dot = parseFloat(getComputedStyle(block, '::before').top) || 47;
+        block.classList.toggle('is-lit', block.getBoundingClientRect().top + dot < line);
+      });
+    };
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(grow); } }, { passive: true });
+    window.addEventListener('resize', grow);
+    grow();
   }
 })();
 </script>

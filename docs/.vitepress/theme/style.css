@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'GFS Didot';
-  src: url('/fonts/gfs-didot.ttf') format('truetype');
+  src: url('/fonts/gfs-didot.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Louis Song';
-  src: url('/fonts/noto-serif-sc-headings.ttf') format('truetype');
+  src: url('/fonts/noto-serif-sc-headings.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
@@ -49,6 +49,11 @@ html { scroll-padding-top: 100px; scrollbar-color: #898eaf var(--l-paper); }
 ::selection { background: #ddcda4; color: #121b4b; }
 a, button { touch-action: manipulation; }
 a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+/* 例外：.primary-link 是唯一一处「底色与文字色反过来」的按钮，焦点环用 currentColor 会画在与自己同色的背景上
+   —— 首页 CTA 的环是 #101bb4、首屏底色也是 #101bb4（1:1）；404 页的环是 #f7f3ea、页面底色是 #f5f2e9（约 1:1），
+   两处都等于看不见。改用 --l-gold：它在群青底（#e3c77f，6.9:1）、纸色底（#8a6526，4.7:1）、深色底（#e1c185，10:1）
+   三种背景下都是已核对的对比色，所以深色模式与 404 页都自动正确。 */
+.primary-link:focus-visible { outline-color: var(--l-gold); }
 .VPNavBarTitle .title { font-family: 'GFS Didot', serif; font-size: 34px; font-weight: 400; }
 .VPNavBarSearch .DocSearch-Button { border-radius: 2px; }
 .VPNavBar.home {
@@ -99,6 +104,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .journal { padding-top: 46px; padding-bottom: 46px; }
 .section-heading { display: flex; align-items: center; gap: 30px; margin-bottom: 34px; }
 .section-heading h2 { font-family: var(--l-serif); font-size: 42px; line-height: 1.43; font-weight: 600; color: var(--vp-c-brand-1); }
+/* 章节标题前的小花饰 */
+.section-heading h2::before { content: "✦"; display: inline-block; margin-right: 16px; font-size: 16px; vertical-align: .3em; }
 .section-rule { flex: 1; height: 1px; background: var(--l-line); }
 .entry-meta { display: flex; align-items: center; gap: 24px; font-size: 14px; color: var(--l-muted); }
 .entry-meta span:first-child { color: var(--vp-c-brand-1); border-right: 1px solid var(--l-line); padding-right: 24px; }
@@ -114,20 +121,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .library-motto span { display: block; font-family: 'GFS Didot', serif; font-size: 16px; letter-spacing: .025em; margin-top: 8px; color: #dcdef4; }
 .section-heading h2 small { display: inline-block; margin-left: 16px; font-family: 'GFS Didot', serif; font-size: 22px; font-weight: 400; color: var(--l-muted); }
 .entry-description { max-width: 66ch; margin-top: 20px; color: var(--l-muted); line-height: 1.9; }
-.interests { padding-block: 48px 80px; }
+/* 「持续探索」是群青色带，字色改为象牙白系 */
+.interests { padding-block: 56px 72px; background: var(--l-blue); color: var(--l-white); }
+.interests .section-heading h2 { color: var(--l-white); }
+.interests .section-heading h2 small { color: #d8dbf2; }
+.interests .section-rule { background: #ffffff35; }
 .subject-list { margin: 0; }
-.subject-list > div { display: grid; grid-template-columns: 1fr 1.35fr; align-items: baseline; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--l-line); }
+.subject-list > div { display: grid; grid-template-columns: 1fr 1.35fr; align-items: baseline; gap: 32px; padding: 28px 0; border-bottom: 1px solid #ffffff35; }
+.subject-list > div:last-child { border-bottom: 0; }
 .subject-list dt { font-family: var(--l-serif); font-size: 26px; }
-.subject-list dt span { display: inline-block; margin-left: 18px; font-family: 'GFS Didot', serif; font-size: 12px; letter-spacing: .08em; color: var(--l-muted); }
-.subject-list dd { margin: 0; color: var(--l-muted); line-height: 1.9; }
-.portals { display: grid; grid-template-columns: 1fr 1fr; padding-block: 56px; background: var(--l-blue); color: var(--l-white); gap: 8%; }
+.subject-list dt span { display: inline-block; margin-left: 18px; font-family: 'GFS Didot', serif; font-size: 12px; letter-spacing: .08em; color: #d8dbf2; }
+.subject-list dd { margin: 0; color: #e0e1f6; line-height: 1.9; }
+/* 入口卡回到纸色底，群青标题 */
+.portals { display: grid; grid-template-columns: 1fr 1fr; padding-block: 56px; gap: 8%; border-bottom: 1px solid var(--l-line); }
 .portal { padding-block: 12px; }
-.portal h2 { font: 34px/1.5 var(--l-serif); }
-.portal small { display: block; font: 20px/1.6 'GFS Didot', serif; color: #d8dbf2; }
-.portal p { margin-block: 24px; line-height: 1.8; color: #e0e1f6; }
-.portal-action { display: inline-flex; align-items: center; gap: 24px; min-height: 44px; border-bottom: 1px solid #ffffff70; }
+.portal h2 { font: 34px/1.5 var(--l-serif); color: var(--vp-c-brand-1); }
+.portal small { display: block; font: 20px/1.6 'GFS Didot', serif; color: var(--l-muted); }
+.portal p { margin-block: 24px; line-height: 1.8; color: var(--l-muted); }
+.portal-action { display: inline-flex; align-items: center; gap: 24px; min-height: 44px; color: var(--vp-c-brand-1); border-bottom: 1px solid var(--l-line); transition: border-color .25s, gap .25s; }
 .portal .arrow-icon { color: inherit; }
-.portal:hover .portal-action { border-bottom-color: currentColor; }
+.portal:hover .portal-action { border-bottom-color: currentColor; gap: 32px; }
+/* 链接悬停：下划线从左往右画出来 */
+.entry-link h3 { width: fit-content; max-width: 100%; padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px; transition: background-size .35s ease; }
+.entry-link:hover h3 { background-size: 100% 1px; }
+.VPNavBarMenuLink:not(.active) { background: linear-gradient(currentColor, currentColor) no-repeat 0 calc(50% + 14px) / 0 1px; transition: background-size .3s ease; }
+.VPNavBarMenuLink:not(.active):hover { background-size: 100% 1px; }
 .art-colophon { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding-block: 44px; color: var(--l-muted); }
 .art-colophon > span { font: 24px/1.5 'GFS Didot', serif; white-space: nowrap; }
 .art-colophon p { max-width: 54ch; font-size: 12px; line-height: 1.8; }
@@ -174,8 +192,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
   .subject-list > div { grid-template-columns: 1fr; gap: 12px; padding-block: 24px; }
   .subject-list dt { font-size: 24px; }
   .subject-list dt span { margin-left: 10px; }
+  .section-heading h2::before { margin-right: 10px; font-size: 13px; }
+  .interests { padding-block: 40px 44px; }
   .portals { grid-template-columns: 1fr; gap: 32px; padding-block: 36px; }
-  .portal + .portal { border-top: 1px solid #ffffff45; padding-top: 36px; }
+  .portal + .portal { border-top: 1px solid var(--l-line); padding-top: 36px; }
   .portal h2 { font-size: 30px; }
   .art-colophon { align-items: flex-start; flex-direction: column; gap: 16px; padding-block: 32px; }
   .VPDoc { padding-top: 32px !important; }
@@ -183,4 +203,166 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 @media (prefers-reduced-motion: reduce) {
   .library-art { transform: none !important; transition: none; }
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
+}
+/* 文章列表页由数据加载器生成，标题与间距沿用文章正文的样式 */
+.vp-doc section > h2 { margin-top: 40px; }
+
+/* 文章首字下沉：第一段的第一个字放大成约两行高，像旧书章节开头。
+   加了 pageClass: plain 的页面（文章列表、关于）不做。 */
+.vp-doc h1 + p::first-letter { float: left; margin: .12em .14em 0 0; font-family: var(--l-serif); font-size: 2.8em; line-height: .85; color: var(--vp-c-brand-1); }
+.plain .vp-doc h1 + p::first-letter { float: none; margin: 0; font: inherit; color: inherit; }
+/* 文章正文里的分隔线换成小花饰 */
+.vp-doc hr { border: 0; margin: 40px 0; text-align: center; }
+.vp-doc hr::before { content: "✦ ✦ ✦"; letter-spacing: .6em; font-size: 12px; color: var(--vp-c-brand-1); }
+/* 文章结尾落款 */
+.article-end { margin-top: 56px; text-align: center; color: var(--l-muted); }
+.article-end::before { content: "✦"; display: block; margin-bottom: 14px; font-size: 14px; color: var(--vp-c-brand-1); }
+.article-end p { margin: 0; font: 15px/1.8 var(--l-serif); letter-spacing: .08em; }
+.article-end span { display: block; margin-top: 2px; font: 13px/1.6 'GFS Didot', serif; letter-spacing: .1em; }
+/* 404 页 */
+.not-found-page { max-width: 640px; margin: 0 auto; padding: 96px 24px 120px; text-align: center; color: var(--l-ink); }
+.not-found-code { margin: 0; font: 400 clamp(88px, 14vw, 150px)/1 'GFS Didot', serif; color: var(--vp-c-brand-1); }
+.not-found-page h1 { margin: 20px 0 8px; font: 400 30px/1.4 var(--l-serif); }
+.not-found-page h1 + p { margin: 0; font: 18px/1.6 'GFS Didot', serif; color: var(--l-muted); }
+.not-found-page .not-found-hint { margin: 26px 0 0; color: var(--l-muted); line-height: 1.9; }
+.not-found-page .primary-link { margin-top: 36px; background: var(--l-blue); color: var(--l-white); }
+.not-found-page .primary-link:hover { background: var(--l-blue-deep); }
+.not-found-page::before, .not-found-page::after { content: "✦ ✦ ✦"; display: block; letter-spacing: .6em; font-size: 12px; color: var(--vp-c-brand-1); }
+.not-found-page::before { margin-bottom: 40px; }
+.not-found-page::after { margin-top: 56px; }
+
+/* ==========================================================================
+   质感、装饰与程序化图案（2026-09-28 第二轮）
+   图案文件由 scripts/generate-art.mjs 在打包时生成到 /art/generated/；
+   文章徽章与首页星座由 theme/art.mjs 现场画出。规则记录在 DESIGN.md「质感与程序化图案」。
+   ========================================================================== */
+
+/* 第三种点缀色：哑光金。只用于 ✦、章节序号、藏书票与迷宫之线，全站占比很小。
+   三套数值分别对应纸色底、深色底、群青底，对比度都已核对（纸色底 4.7:1，可用于小字）。 */
+:root { --l-gold: #8a6526; }
+.dark { --l-gold: #e1c185; }
+.library-hero, .interests { --l-gold: #e3c77f; }
+
+/* 纸张纹理：只铺在首页。蓝色区块自带纯色底，会把纹理盖住，所以纹理只出现在象牙白区域。
+   深色模式换成稀疏星点。文章、列表、关于页的阅读区保持纯色底。 */
+.louis-home { position: relative; isolation: isolate; }
+.louis-home::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url('/art/generated/paper-grain.svg') 0 0 / 240px 240px; opacity: .1;
+}
+.dark .louis-home::before {
+  background: #e8ecff; opacity: .4;
+  -webkit-mask: url('/art/generated/stars.svg') 0 0 / 560px 560px; mask: url('/art/generated/stars.svg') 0 0 / 560px 560px;
+}
+
+/* 版画网线：首页两块群青区域叠一层极淡的横向刻线，呼应雅典娜铜版画。
+   首屏左侧被插画盖住，所以网线只露在右侧文字区的底下。 */
+.interests { position: relative; }
+.interests > .section-shell { position: relative; }
+.library-hero::before, .interests::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--l-white); opacity: .07;
+  -webkit-mask: url('/art/generated/hatch.svg') 0 0 / 160px 160px; mask: url('/art/generated/hatch.svg') 0 0 / 160px 160px;
+}
+
+/* 希腊回纹：区块标题旁的细线换成一条回纹带（图案是一个可以左右无缝拼接的小方块） */
+.section-rule, .vp-doc .catalog-year-no::after {
+  height: 14px; background: currentColor; color: var(--vp-c-brand-1); opacity: .32;
+  -webkit-mask: url('/art/generated/meander.svg') 0 50% / 14px 14px repeat-x; mask: url('/art/generated/meander.svg') 0 50% / 14px 14px repeat-x;
+}
+.interests .section-rule { background: var(--l-white); opacity: .32; }
+
+/* 首页章节序号：I 最新札记、II 持续探索、III 工具箱、IV 学习规划，替代原来的 ✦。
+   写成 content: attr(data-no) / "" 是为了让读屏软件跳过这个装饰序号；旧浏览器不认第二行时退回第一行。 */
+.section-heading h2[data-no]::before, .portal h2[data-no]::before {
+  content: attr(data-no); content: attr(data-no) / "";
+  display: inline-block; margin-right: 16px;
+  font: 400 22px/1 'GFS Didot', serif; letter-spacing: .06em; color: var(--l-gold); vertical-align: .24em;
+}
+
+/* 金色 ✦：文章分隔线、文章落款、404 页的花饰 */
+.vp-doc hr::before, .article-end::before, .not-found-page::before, .not-found-page::after { color: var(--l-gold); }
+
+/* 星座：「持续探索」右侧，一个主题一组星。平时半亮，鼠标移到某个主题上时那组全亮，组间虚线浮现。
+   屏幕较窄时没有空位，直接不显示。 */
+.subject-field { position: relative; }
+.subject-sky { position: absolute; top: 0; right: 0; width: 260px; height: 100%; pointer-events: none; color: var(--l-white); }
+.subject-sky svg { display: block; width: 100%; height: 100%; }
+.subject-sky .cluster { opacity: .45; transition: opacity .6s var(--l-ease); }
+.subject-sky .bridge { opacity: 0; transition: opacity .6s var(--l-ease); }
+.subject-field[data-active] .bridge { opacity: .75; }
+.subject-field[data-active="0"] .cluster[data-i="0"],
+.subject-field[data-active="1"] .cluster[data-i="1"],
+.subject-field[data-active="2"] .cluster[data-i="2"] { opacity: 1; }
+@media (min-width: 1101px) { .subject-field .subject-list { margin-right: 320px; } }
+@media (max-width: 1100px) { .subject-sky { display: none; } }
+
+/* 徽章的线条：不随缩放变细，小尺寸下也清楚 */
+.seal-mark svg, .catalog-seal svg, .ex-libris-seal svg { display: block; width: 100%; height: 100%; }
+.seal-mark svg *, .catalog-seal svg *, .ex-libris-seal svg * { vector-effect: non-scaling-stroke; }
+
+/* 文章顶部：徽章 + 藏书编号 · 分类 · 年月 */
+.article-seal { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; color: var(--vp-c-brand-1); }
+.seal-mark { width: 84px; height: 84px; flex-shrink: 0; }
+.article-seal-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0; font-size: 13px; color: var(--l-muted); letter-spacing: .04em; }
+.article-seal-meta [lang="en"], .catalog-meta [lang="en"] { font: 15px/1.5 'GFS Didot', serif; letter-spacing: .08em; color: var(--l-gold); }
+
+/* 文章列表 → 藏书目录：大号年份 + 回纹，每条左侧是徽章 */
+.catalog { margin-top: 44px; }
+.catalog-year + .catalog-year { margin-top: 56px; }
+.vp-doc .catalog-year-no { display: flex; align-items: center; gap: 24px; margin: 0 0 4px; padding: 0; border: 0; font: 400 64px/1.1 'GFS Didot', serif; letter-spacing: .02em; color: var(--vp-c-brand-1); }
+.vp-doc .catalog-year-no::after { content: ""; flex: 1; }
+.vp-doc .catalog-list { list-style: none; margin: 0; padding: 0; }
+.vp-doc .catalog-list > li { margin: 0; border-bottom: 1px solid var(--l-line); }
+.vp-doc .catalog-entry { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 24px; align-items: start; padding: 28px 0; color: inherit; font-weight: inherit; text-decoration: none; }
+.catalog-seal { display: block; width: 64px; height: 64px; margin-top: 4px; color: var(--vp-c-brand-1); }
+.catalog-text { display: block; min-width: 0; }
+.catalog-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; font-size: 13px; color: var(--l-muted); }
+.catalog-title {
+  display: block; width: fit-content; max-width: 100%; margin-top: 6px; padding-bottom: 2px;
+  font: 400 26px/1.45 var(--l-serif); color: var(--vp-c-brand-1);
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px; transition: background-size .35s ease;
+}
+.catalog-entry:hover .catalog-title { background-size: 100% 1px; }
+.catalog-desc { display: block; margin-top: 8px; font-size: 15px; line-height: 1.85; color: var(--l-muted); }
+
+/* 关于页题记：左边是格言，右边是一张藏书票（双线框：内蓝外金） */
+.about-frontis { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 40px; align-items: center; margin: 8px 0 24px; padding: 32px 0 8px; border-top: 1px solid var(--vp-c-brand-1); }
+.vp-doc .epigraph { margin: 0; }
+.vp-doc .epigraph blockquote { margin: 0; padding: 0; border: 0; font: 400 clamp(30px, 3.4vw, 44px)/1.35 var(--l-serif); letter-spacing: .06em; color: var(--vp-c-brand-1); }
+.vp-doc .epigraph blockquote::before { content: "✦"; display: block; margin-bottom: 14px; font-size: 14px; letter-spacing: 0; color: var(--l-gold); }
+.vp-doc .epigraph figcaption { margin-top: 12px; font: 18px/1.5 'GFS Didot', serif; color: var(--l-muted); }
+.ex-libris { display: flex; flex-direction: column; align-items: center; padding: 20px 16px 16px; text-align: center; color: var(--vp-c-brand-1); border: 1px solid var(--vp-c-brand-1); outline: 1px solid var(--l-gold); outline-offset: 3px; }
+.ex-libris-seal { width: 72px; height: 72px; }
+.ex-libris-label { margin-top: 12px; font: 12px/1.4 'GFS Didot', serif; letter-spacing: .2em; text-transform: uppercase; color: var(--l-muted); }
+.ex-libris strong { font: 400 30px/1.3 'GFS Didot', serif; }
+.ex-libris small { margin-top: 6px; font-size: 12px; line-height: 1.7; color: var(--l-muted); }
+
+/* 文章旁注：在 Markdown 里写 <aside class="margin-note">补充说明</aside>，
+   宽屏时浮在正文右侧、左边一道金线，像古书的旁批；手机上回到正文里单独一段。 */
+.vp-doc .margin-note { float: right; clear: right; width: 38%; margin: 6px 0 18px 28px; padding: 2px 0 2px 16px; border-left: 1px solid var(--l-gold); font-size: 13.5px; line-height: 1.85; color: var(--l-muted); }
+.vp-doc .margin-note::before { content: "旁注"; display: block; margin-bottom: 4px; font: 12px/1.4 var(--l-serif); letter-spacing: .2em; color: var(--l-gold); }
+.vp-doc .margin-note p { margin: 0; line-height: inherit; }
+.vp-doc h2 { clear: both; }
+
+/* 入场浮现（reveal.js 负责打标记）：标记过的块先透明并下沉 8px，进入屏幕时回到原位 */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-wait { opacity: 0; transform: translateY(8px); }
+  .reveal-wait.is-in { opacity: 1; transform: none; transition: opacity .8s var(--l-ease), transform .8s var(--l-ease); }
+}
+@media print { .reveal-wait { opacity: 1 !important; transform: none !important; } }
+
+@media (max-width: 760px) {
+  .section-heading h2[data-no]::before, .portal h2[data-no]::before { margin-right: 10px; font-size: 17px; }
+  .article-seal { gap: 16px; }
+  .seal-mark { width: 68px; height: 68px; }
+  .vp-doc .catalog-year-no { font-size: 48px; gap: 16px; }
+  .vp-doc .catalog-entry { grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding-block: 22px; }
+  .catalog-seal { width: 48px; height: 48px; }
+  .catalog-title { font-size: 22px; }
+  .about-frontis { grid-template-columns: 1fr; gap: 28px; padding-block: 28px; }
+  .ex-libris { justify-self: start; width: 210px; margin-left: 4px; }
+}
+@media (max-width: 640px) {
+  .vp-doc .margin-note { float: none; width: auto; margin: 20px 0; }
 }

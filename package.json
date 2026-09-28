@@ -5,8 +5,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
+    "check": "node scripts/check-content.mjs",
+    "verify": "node scripts/verify-pages.mjs",
+    "art": "node scripts/generate-art.mjs",
+    "dev": "node scripts/generate-art.mjs && vitepress dev docs",
+    "build": "node scripts/generate-art.mjs && vitepress build docs",
     "preview": "vitepress preview docs"
   },
   "devDependencies": {

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 群青底 + 象牙白衬线字母 L，与站点主色一致 -->
+  <rect width="64" height="64" rx="6" fill="#101bb4"/>
+  <path fill="#f7f3ea" d="M17 13h19v3h-5v29h12v-8h3v14H17v-3h5V16h-5z"/>
+</svg>

@@ -35,11 +35,15 @@ jobs:
       - name: 准备 Node 环境
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: 安装依赖
         run: npm ci
+
+      # 内容保全检查：课程链接、工具入口等被意外删掉时，这一步会失败，网站就不会发布出去
+      - name: 检查页面内容
+        run: npm run check
 
       - name: 构建静态网站
         run: npm run build
