@@ -21,8 +21,15 @@
   function paint() {
     var dark = isDark();
     root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    // 顶栏那个开关和博客上的那个一样：不写文字，状态放在 aria-checked 和标题里，
+    // 太阳 / 月亮图标与圆点位置由 CSS 按 data-theme 切换。
     var btn = document.getElementById('themeBtn');
-    if (btn) btn.textContent = dark ? '浅色' : '深色';
+    if (btn) {
+      var label = dark ? '切换到浅色模式' : '切换到深色模式';
+      btn.setAttribute('aria-checked', dark ? 'true' : 'false');
+      btn.setAttribute('title', label);
+      btn.setAttribute('aria-label', label);
+    }
   }
 
   paint();

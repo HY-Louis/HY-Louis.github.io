@@ -72,6 +72,13 @@ try {
   results.homeImage = await evaluate("document.querySelector('.library-art img').currentSrc")
   results.icons = await evaluate(`Promise.all(['/favicon.svg','/favicon.ico','/apple-touch-icon.png','/fonts/gfs-didot.woff2','/fonts/noto-serif-sc-headings.woff2','/art/athena-library.jpg'].map(u => fetch(u).then(r => u + ' ' + r.status)))`)
   results.homeFonts = await evaluate("[...document.fonts].filter(f => f.status === 'loaded').map(f => f.family)")
+  // 首页顶栏（.VPNavBar.home）把 --vp-c-text-2 覆盖成 #dfdff6，而 VitePress 的开关图标读的正是这个变量、
+  // 又画在白圆点上——浅色下就成了 1.31:1 的「浅灰画在白上」。style.css 单独把开关里的图标固定成
+  // VitePress 出厂的 #67676c（对白圆点 5.62:1）。这里守住它：期望 rgb(255,255,255) 圆点 + rgb(103,103,108) 图标。
+  results.homeLightSwitch = await evaluate(`({
+    knob: getComputedStyle(document.querySelector('.VPSwitchAppearance .check')).backgroundColor,
+    sunIcon: getComputedStyle(document.querySelector('.VPSwitchAppearance .icon .vpi-sun')).color
+  })`)
   await shot('home-1440')
   await evaluate("document.getElementById('journal').scrollIntoView()"); await sleep(1200); await shot('home-journal-1440')
   await evaluate("document.querySelector('.interests').scrollIntoView()"); await sleep(1200); await shot('home-interests-1440')
@@ -79,6 +86,16 @@ try {
   await evaluate("document.querySelector('.article-end')?.scrollIntoView(false)"); await sleep(300); await shot('article-end-1440')
   results.articleEnd = await evaluate("document.querySelector('.article-end p')?.textContent")
   await go('/blog/'); await shot('blog-list-1440')
+  // 博客（VitePress）顶栏右侧有什么，用来和工具箱 / 规划两页对齐着看
+  results.blogNavControls = await evaluate(`({
+    switch: !!document.querySelector('.VPNavBarAppearance .VPSwitchAppearance'),
+    switchBox: (() => { const r = document.querySelector('.VPSwitchAppearance') && document.querySelector('.VPSwitchAppearance').getBoundingClientRect(); return r ? Math.round(r.width) + 'x' + Math.round(r.height) : 'none' })(),
+    social: [...document.querySelectorAll('.VPNavBarSocialLinks .VPSocialLink')].map(a => a.getAttribute('aria-label')),
+    // 开关图标画在白圆点上，要对着圆点算对比度：首页顶栏曾经把它压成 #dfdff6（1.31:1，看不见）。
+    // 期望：浅色下圆点是白、图标是 VitePress 出厂的 rgb(103, 103, 108)。
+    knob: getComputedStyle(document.querySelector('.VPSwitchAppearance .check')).backgroundColor,
+    sunIcon: getComputedStyle(document.querySelector('.VPSwitchAppearance .icon .vpi-sun')).color
+  })`)
   results.listDropCap = await evaluate("getComputedStyle(document.querySelector('.vp-doc h1 + p'), '::first-letter').float")
   await go('/about/'); await shot('about-1440')
   results.aboutSeal = await evaluate("!!document.querySelector('.ex-libris-seal svg')")
@@ -87,12 +104,38 @@ try {
   await go('/no-such-page'); await shot('404-1440')
   results.notFound = await evaluate("document.querySelector('.not-found-page h1')?.textContent")
   await go('/tools/index.html'); await shot('tools-top-1440')
+  // 「AI 工具」这一类的产品图标在首屏之外，单独滚到这一段截一张，方便人工核对图标
+  await evaluate("document.getElementById('ai').scrollIntoView()"); await sleep(600); await shot('tools-ai-1440')
   await evaluate("document.getElementById('courses').scrollIntoView()"); await sleep(300); await shot('tools-courses-1440')
   results.tools = await evaluate(`({
     cats: [...document.querySelectorAll('[data-cat] h2')].map(h => h.textContent),
     total: document.getElementById('totalCount').textContent,
+    scrollY: Math.round(window.scrollY),
     courses: [...document.querySelectorAll('#courses .course-row b')].map(b => b.textContent),
-    nav: [...document.querySelectorAll('.pages a')].map(a => a.textContent + '→' + a.getAttribute('href'))
+    nav: [...document.querySelectorAll('.pages a')].map(a => a.textContent + '→' + a.getAttribute('href')),
+    // 顶栏右侧应该是「开关 + GitHub 图标」两个控件，和博客顶栏一致；文字按钮已改掉
+    navControls: [...document.querySelectorAll('.topbar .tools > *')].map(el => el.tagName.toLowerCase() + '[' + (el.getAttribute('aria-label') || '') + '] ' +
+      Math.round(el.getBoundingClientRect().width) + 'x' + Math.round(el.getBoundingClientRect().height)),
+    switchKnob: (() => {
+      const sw = document.querySelector('.switch'), k = sw.querySelector('.check')
+      return Math.round(k.getBoundingClientRect().width) + 'x' + Math.round(k.getBoundingClientRect().height) +
+        ' 左偏 ' + Math.round(k.getBoundingClientRect().left - sw.getBoundingClientRect().left) + 'px'
+    })(),
+    // 「AI 工具」的产品图标：文件读到了没、渲染尺寸对不对、在页面的哪个位置（方便截图核对）
+    icons: [...document.querySelectorAll('#ai .tool .ico')].map(i => (i.getAttribute('src') || '').replace('/icons/', '') +
+      ' ' + Math.round(i.getBoundingClientRect().width) + 'x' + Math.round(i.getBoundingClientRect().height) +
+      ' @' + Math.round(i.getBoundingClientRect().left) + ',' + Math.round(i.getBoundingClientRect().top) +
+      (i.complete && i.naturalWidth > 0 ? ' ok' : ' BROKEN')),
+    // 图标和标题在同一行，且中心线对齐（两者高度不同，所以比中心而不是比 top）
+    iconHeadRow: [...document.querySelectorAll('#ai .tool .head')].every(h => {
+      const i = h.querySelector('.ico').getBoundingClientRect(), b = h.querySelector('b').getBoundingClientRect()
+      return Math.abs((i.top + i.bottom) / 2 - (b.top + b.bottom) / 2) <= 2
+    }),
+    iconTagOverlap: [...document.querySelectorAll('#ai .tool')].filter(t => {
+      const tag = t.querySelector('.tag'); if (!tag) return false
+      const a = tag.getBoundingClientRect(), b = t.querySelector('.head').getBoundingClientRect()
+      return a.right > b.left && a.left < b.right && a.bottom > b.top && a.top < b.bottom
+    }).length
   })`)
   await go('/plan/index.html'); await shot('plan-top-1440')
   results.planNav = await evaluate("[...document.querySelectorAll('.pages a')].map(a => a.textContent + '→' + a.getAttribute('href'))")
@@ -110,7 +153,8 @@ try {
       results[`${name}-${w}`] = await evaluate(`({
         overflow: document.documentElement.scrollWidth > innerWidth,
         topbarHeight: Math.round(document.querySelector('.topbar').getBoundingClientRect().height),
-        pagesRows: new Set([...document.querySelectorAll('.pages a')].map(a => Math.round(a.getBoundingClientRect().top))).size
+        pagesRows: new Set([...document.querySelectorAll('.pages a')].map(a => Math.round(a.getBoundingClientRect().top))).size,
+        topbarItems: [...document.querySelectorAll('.topbar-inner > *')].map(el => el.className + ' ' + Math.round(el.getBoundingClientRect().width) + 'px@行' + Math.round(el.getBoundingClientRect().top))
       })`)
       await shot(`${name}-top-${w}`)
     }
@@ -120,8 +164,24 @@ try {
   await view(1440, 900); await scheme(false)
   await go('/blog/'); await evaluate("localStorage.setItem('vitepress-theme-appearance', 'dark')")
   await go('/blog/'); results.blogDark = await evaluate("document.documentElement.classList.contains('dark')")
-  await go('/tools/index.html'); results.toolsDarkAfterBlog = await evaluate("document.documentElement.dataset.theme + ' / 按钮:' + document.getElementById('themeBtn').textContent")
+  // 深色下首页顶栏的开关：圆点变黑、图标读 --vp-c-text-1（象牙白）。style.css 那条修复带 html:not(.dark)，
+  // 就是不许它把这里的深色配色也覆盖成 #67676c（黑圆点上的深灰图标同样看不见）。
+  await go('/'); results.homeDarkSwitch = await evaluate(`({
+    knob: getComputedStyle(document.querySelector('.VPSwitchAppearance .check')).backgroundColor,
+    moonIcon: getComputedStyle(document.querySelector('.VPSwitchAppearance .icon .vpi-moon')).color
+  })`)
+  await go('/tools/index.html'); results.toolsDarkAfterBlog = await evaluate("document.documentElement.dataset.theme + ' / 开关:' + document.getElementById('themeBtn').getAttribute('aria-checked') + ' / ' + document.getElementById('themeBtn').title")
   await shot('tools-dark-1440')
+  await evaluate("document.getElementById('ai').scrollIntoView()"); await sleep(600); await shot('tools-ai-dark-1440')
+  // 深色模式下黑白图标（OpenAI / Qoder / Cursor）要反相，否则等于看不见
+  results.toolsDarkIconFilter = await evaluate("getComputedStyle(document.querySelector('#ai .ico-mono')).filter")
+  // 深色下开关要「圆点右移 + 月亮出现」
+  results.toolsDarkSwitch = await evaluate(`({
+    checked: document.getElementById('themeBtn').getAttribute('aria-checked'),
+    knobOffset: Math.round(document.querySelector('.switch .check').getBoundingClientRect().left - document.querySelector('.switch').getBoundingClientRect().left),
+    sun: getComputedStyle(document.querySelector('.switch .sun')).opacity,
+    moon: getComputedStyle(document.querySelector('.switch .moon')).opacity
+  })`)
   await go('/'); await shot('home-dark-1440')
   await go('/blog/'); await shot('blog-list-dark-1440')
   await go('/plan/index.html'); results.planDarkAfterBlog = await evaluate("document.documentElement.dataset.theme")

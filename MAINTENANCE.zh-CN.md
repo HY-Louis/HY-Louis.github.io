@@ -14,6 +14,7 @@
 | 顶部导航 | `docs/.vitepress/config.mjs` |
 | 关于我 | `docs/about/index.md` |
 | 工具名称、描述、官网链接 | `docs/public/tools/index.html` |
+| 「AI 工具」的产品图标 | `docs/public/icons/`（来源与改动见该目录 `SOURCES.txt`） |
 | 学习规划（后端开发路线、408 学习、章节指南、结尾验收要求） | `docs/public/plan/index.html` |
 | 工具与规划的共同外观 | `docs/public/assets/site-pages.css` |
 | 程序化图案的画法（徽章、星座、迷宫、底纹、回纹） | `docs/.vitepress/theme/art.mjs` |
@@ -39,8 +40,30 @@
 ## 深色模式与网站图标
 
 - 博客、工具箱、学习规划共用同一个深色 / 浅色记录 `vitepress-theme-appearance`（VitePress 自带的那个）。独立页的切换逻辑在 `docs/public/assets/theme.js`，必须放在 `<head>` 里加载，否则深色用户会先看到一下白屏。
+- 两个独立页顶栏右侧是「深浅色开关 + GitHub 图标」，和博客顶栏上的两个控件对应（2026-10-01 改的，之前是一个写着「深色」的文字按钮）。开关的 HTML 在各页 `<head>` 下面那个 `<div class="tools">` 里，样式在 `site-pages.css` 的 `.switch` / `.iconlink`。**改开关时注意**：`theme.js` 不再写按钮文字，而是设 `aria-checked` 与 `title`；太阳 / 月亮和圆点位置由 CSS 按 `html[data-theme]` 切换，所以别把 `data-theme` 这个属性换成别的写法。GitHub 图标地址若要改，`scripts/check-content.mjs` 里也写着同一个地址，两处一起改。
+- 开关的四个颜色变量 `--sw-border / --sw-bg / --sw-knob / --sw-icon` 声明在 `.switch` 上（深色模式在 `:root[data-theme='dark'] .switch` 里换另一套），值是照 VitePress 那个开关取的——改配色只改这四个变量，别把色值写进 `.check` / `.icon`。
+- **图标是画在圆点上的**：太阳 / 月亮图标的对比度要对着**圆点**算，不是对着顶栏的群青底算。博客首页顶栏曾经把 `--vp-c-text-2` 覆盖成 `#dfdff6`，而 VitePress 的开关图标读的正是这个变量，浅色下就成了「浅灰图标 + 白圆点」（1.31:1，几乎看不见）。`docs/.vitepress/theme/style.css` 里用 `html:not(.dark) .VPNavBar.home .VPSwitchAppearance .icon [class^='vpi-']` 单独把开关图标固定成 `#67676c` 修好了；以后改首页顶栏的颜色变量时，注意别再动到开关图标（那个 `html:not(.dark)` 不能去掉，去掉会把深色模式一起覆盖）。
 - 网站图标：`docs/public/favicon.svg`（主图标）、`favicon.ico`（老浏览器）、`apple-touch-icon.png`（苹果设备主屏幕）。换图标时三个一起换；博客的引用写在 `config.mjs` 的 `head`，独立页写在各自的 `<head>`。
 - 首页大图的原始 PNG（3.7MB）不再随网站发布，本地留在 `assets/plates/athena.png`（不进版本库）；页面上用的是 WebP 两个尺寸，加一张 `athena-library.jpg` 给不支持 WebP 的老浏览器。字体为 WOFF2 格式。
+
+## 工具箱的产品图标（2026-10-01）
+
+「AI 工具」8 个入口的名称左边各有一个 24px 的产品图标，文件在 `docs/public/icons/`，一个产品一个 `.svg`，页面里是：
+
+```html
+<span class="head"><img class="ico" src="/icons/deepseek.svg" alt="" width="24" height="24"><b>DeepSeek</b></span>
+```
+
+只有「AI 工具」这一类有图标；其余四类保持纯文字。图标一律 `alt=""`（名称就在旁边，图标只是装饰，读屏不需要念第二遍），尺寸由 CSS 的 `.tool .ico` 定，`width` / `height` 属性只是给浏览器占位用。
+
+加一个新工具时的做法：
+
+1. 去 <https://lobehub.com/zh/icons> 找该产品的图标；那里的静态文件可以直接下载：
+   `https://unpkg.com/@lobehub/icons-static-svg@latest/icons/<名字>.svg`。找不到（例如 WorkBuddy）就去官网 `<head>` 里找它自己引用的图标文件。
+2. 存到 `docs/public/icons/<产品>.svg`，顺手做两件事：把 `style="flex:none;line-height:1"` 去掉，`width` / `height` 改成 `24`。
+3. **如果文件里写的是 `fill="currentColor"`，要换成固定颜色（现在用的是 `#14161a`）**，并给这个 `<img>` 加上 `ico-mono` 类。原因：`<img>` 加载的 SVG 是一个独立文档，取不到页面的 `color`，`currentColor` 会永远渲染成黑色，深色模式里等于看不见；`ico-mono` 在深色模式下走 `filter: invert(1) hue-rotate(180deg)` 反相（`hue-rotate` 是为了让 Qoder 的绿色仍然是绿色）。彩色图标不要加这个类。
+4. **下载完一定要看一眼它在纸色底上到底长什么样**：有些品牌的标志是「白色线条 + 深色方块」（设计上是给深色底用的），直接放到这一页会几乎看不见——Kimi 就是这种情况（原始文件里「K」是 `#fff`，只有右上角那个蓝点露出来）。首选去官网找该品牌自己的浅色版图标；没有的话就把线条改成 `#14161a` 并加 `ico-mono`（深色模式下反相成白色），这正好等于 Kimi 官网自己 favicon-light / favicon-dark 两套图标的做法。
+5. 在 `SOURCES.txt` 里补一行来源，并同步 `scripts/check-content.mjs`：它按「AI 工具」的入口数核对图标数量、图标文件和 `currentColor` 这三件事，数量对不上会直接报错。
 
 ## 改学习规划时
 

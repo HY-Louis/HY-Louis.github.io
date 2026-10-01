@@ -35,6 +35,12 @@ for (const [name, page] of [['plan', plan], ['tools', tools]]) {
   assert.ok(head.includes('favicon.svg'), `${name}: 缺少网站图标`)
   assert.ok(head.includes('name="description"'), `${name}: 缺少网页简介`)
   assert.ok(!/louis-(plan-2026|tools)-theme/.test(page), `${name}: 不要再用各自独立的主题记录`)
+  // 顶栏右侧要和博客（VitePress）一致：深浅色开关 + GitHub 图标。
+  // 2026-10-01 之前这里只有一个写着「深色」的文字按钮，和博客的图标开关对不上。
+  assert.ok(page.includes('class="switch" id="themeBtn"'), `${name}: 顶栏的深浅色开关不见了`)
+  assert.ok(page.includes('aria-checked='), `${name}: 深浅色开关要把状态写在 aria-checked 上`)
+  assert.ok(page.includes('class="iconlink" href="https://github.com/HY-Louis"'), `${name}: 顶栏缺少 GitHub 图标`)
+  assert.ok(!page.includes('iconbtn'), `${name}: 旧的「深色」文字按钮应当已经删掉`)
 }
 
 /* ---------- 编码：防止中文被存成乱码 ---------- */
@@ -168,6 +174,24 @@ assert.ok(tools.includes('5 类 ·'), '工具箱 hero 上的分类数需要与�
 assert.ok(!/通义千问|Qwen|\d{1,2}月/.test(tools))
 assert.ok(!tools.includes('href="/plan/'))
 
+/* ---------- 8b. 「AI 工具」每个入口都要有自己的产品图标 ---------- */
+// 图标文件在 docs/public/icons/，来源与改动见该目录的 SOURCES.txt。
+const aiPart = tools.slice(tools.indexOf('id="ai"'), tools.indexOf('id="oj"'))
+const aiLinks = (aiPart.match(/class="tool reveal"/g) || []).length
+const aiHeads = (aiPart.match(/class="head"/g) || []).length
+assert.equal(aiHeads, aiLinks, '「AI 工具」里还有没配图标的入口')
+const aiIcons = [...aiPart.matchAll(/<img class="ico[^"]*" src="\/(icons\/[^"]+)" alt="" width="24" height="24">/g)].map((m) => m[1])
+assert.equal(aiIcons.length, aiLinks, '「AI 工具」的图标写法和数量要和入口对上')
+assert.equal(new Set(aiIcons).size, aiIcons.length, '「AI 工具」的图标不该重复使用')
+for (const rel of aiIcons) assert.ok(existsSync(`docs/public/${rel}`), `图标文件不存在：${rel}`)
+assert.equal(readdirSync('docs/public/icons').filter((f) => f.endsWith('.svg')).length, aiIcons.length,
+  'icons 里的图标文件数量应与「AI 工具」的入口数一致')
+// <img> 加载的 SVG 取不到页面颜色，currentColor 会一直渲染成黑色，深色模式下等于看不见
+for (const f of readdirSync('docs/public/icons')) {
+  if (f.endsWith('.svg')) assert.ok(!read('docs/public/icons/' + f).includes('currentColor'),
+    `icons/${f}：<img> 里不能用 currentColor，要用固定色 + 深色模式反相`)
+}
+
 /* ---------- 9. 公开页面上不写「写给作者自己」的话 ---------- */
 // 博客是给别人看的：改版说明、进度存储怎么实现这类内容留在文档里，不放页面上。
 const publicText = [visible, tools.replace(/<script[\s\S]*?<\/script>/g, '')].join('\n')
@@ -187,4 +211,4 @@ assert.ok(home.includes('God helps those who help themselves.'), 'Home.vue: mott
 assert.ok(plan.includes('Louis · 天助自助者。'), 'plan/index.html: footer slogan changed')
 assert.ok(tools.includes('Louis · 天助自助者。'), 'tools/index.html: footer slogan changed')
 
-console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 门）与 408 学习（4 门课），共 15 条课程链接、5 份章节指南，结尾验收要求位于苍穹外卖条目内，且打勾与进度功能已移除；工具箱为 5 类（「课程资源」为 8 门公开课，含 WorkBuddy / 技术文章摘抄 / 菜鸟教程 / Z-Library / Netlify Drop，已删 Hermes Agent、Claude 与英语竞赛分类）；两页与博客共用深色模式记录，带网站图标与网页简介，无乱码；公开页面无作者视角说明，格言统一为「天助自助者」。')
+console.log('PASS: 学习规划一页内含后端开发路线（3 阶段、11 门）与 408 学习（4 门课），共 15 条课程链接、5 份章节指南，结尾验收要求位于苍穹外卖条目内，且打勾与进度功能已移除；工具箱为 5 类（「课程资源」为 8 门公开课，含 WorkBuddy / 技术文章摘抄 / 菜鸟教程 / Z-Library / Netlify Drop，已删 Hermes Agent、Claude 与英语竞赛分类），「AI 工具」8 个入口各自带产品图标且图标文件齐全；两页与博客共用深色模式记录，顶栏右侧为深浅色开关 + GitHub 图标（与博客一致），带网站图标与网页简介，无乱码；公开页面无作者视角说明，格言统一为「天助自助者」。')

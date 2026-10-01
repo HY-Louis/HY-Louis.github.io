@@ -73,6 +73,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .VPNavBar.home .VPNavBarMenuLink { color: var(--l-white); font-size: 14px; }
 .VPNavBar.home .VPNavBarMenuLink.active { text-decoration: underline; text-underline-offset: 10px; }
 .VPNavBar.home .VPNavBarTitle .title { color: var(--l-white); }
+/* 开关上的太阳 / 月亮图标：VitePress 让图标读 --vp-c-text-2，而上面那段覆盖把这个变量改成了 #dfdff6，
+   于是浅色下图标（#dfdff6）画在白圆点上，对比度只有 1.31:1，基本看不见。
+   这里只针对「开关里的图标」改回 VitePress 出厂的 #67676c（对白圆点 5.62:1），不碰变量本身
+   ——动变量会让顶栏菜单文字一起变深灰，在群青底上读不了。
+   用 html:not(.dark) 限死浅色：否则本条特异性高于 VitePress 自带的 .dark 规则，会把深色也覆盖掉。 */
+html:not(.dark) .VPNavBar.home .VPSwitchAppearance .icon [class^='vpi-'] { color: #67676c; }
 .VPHome { margin-bottom: 0 !important; }
 .VPHome .VPHomeHero, .VPHome .VPHomeFeatures { display: none; }
 .louis-home { color: var(--l-ink); }

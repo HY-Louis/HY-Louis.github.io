@@ -1,0 +1,32 @@
+Toolbox product icons — added 2026-10-01
+Used by /tools/index.html (AI 工具 分类的 8 个入口), 24 × 24, one file per product.
+All files are the products' own logos; the marks remain the trademarks of their owners
+and are used here only to point at the products themselves.
+
+LobeHub Icons (static SVG set, MIT-licensed packaging; artwork belongs to each brand)
+Source page: https://lobehub.com/zh/icons
+Files fetched: https://unpkg.com/@lobehub/icons-static-svg@latest/icons/
+  deepseek.svg       <- deepseek-color.svg   (DeepSeek)
+  openai.svg         <- openai.svg           (OpenAI)
+  qoder.svg          <- qoder-color.svg      (Qoder)
+  cursor.svg         <- cursor.svg           (Cursor)
+  github-copilot.svg <- copilot-color.svg    (GitHub Copilot)
+  gemini.svg         <- gemini-color.svg     (Gemini)
+  kimi.svg           <- kimi-color.svg       (Kimi)
+
+WorkBuddy (not in the LobeHub set)
+  workbuddy.svg      <- https://download.codebuddy.cn/web/workbuddy/788eb1c5ba3681efa98cf7b58ae688e293c1bb34/assets/logo.svg
+                        (the official icon file referenced by https://www.workbuddy.cn/ <link rel="icon">)
+
+Local edits to the downloaded files (nothing else was changed):
+  - removed the inline style="flex:none;line-height:1" and set width/height to 24;
+  - replaced fill="currentColor" with a fixed ink colour #14161a in openai.svg, cursor.svg and
+    qoder.svg: an SVG loaded through <img> cannot inherit the page colour, so currentColor
+    would always render black. These three are marked class="ico ico-mono" in the page and get
+    filter:invert(1) hue-rotate(180deg) in dark mode (see assets/site-pages.css).
+  - kimi.svg: the K in the downloaded file is fill="#fff" because the mark is drawn to sit on the
+    black Kimi tile (see the official app icon at https://www.kimi.com/pwa-192.png), so on this
+    paper-coloured page only the small blue corner dot was visible. The K is now #14161a and the
+    file is marked ico-mono, which reproduces Kimi's own behaviour — their site ships
+    favicon-light.ico (black mark) and favicon-dark.ico (white mark). The #1783FF corner dot is
+    unchanged.
