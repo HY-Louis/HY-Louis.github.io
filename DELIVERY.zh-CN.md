@@ -498,4 +498,20 @@
 - `npm run check`、`npm run build`、`npm run verify` 全部通过（读数见上一节；开关的几何量、深色下圆点位移 20px、太阳 / 月亮 `opacity` 在改动后复测仍与 VitePress 一致）。
 - 对比度用 sRGB 相对亮度公式独立复算过一遍，与用户在注释里写的 1.31:1 / 5.62:1 一致。
 
+## 上线记录（2026-10-01）
+
+- 提交：`01fa0ce`「工具箱加产品图标，两页顶栏控件与博客对齐」，20 个文件，+369 / −21。三部分合成一次提交：产品图标、两页顶栏控件对齐、用户自行微调的两处配色（`theme/style.css` 与 `site-pages.css`）。提交后工作区干净、无未跟踪文件。
+- 推送与工作流：`5183364..01fa0ce main -> main`；工作流 run 14（<https://github.com/HY-Louis/HY-Louis.github.io/actions/runs/36843940745>），build 与 deploy 两步均 success——`npm run check` 这道内容保全检查在 CI 里也通过（新增的图标与顶栏断言没有拦下发布）。
+- 提交前本地复核（`npm run check` / `build` / `verify` 全绿，关键读数）：
+  - 首页顶栏开关（浅色）：圆点 `rgb(255, 255, 255)`、太阳图标 `rgb(103, 103, 108)` —— 用户那条修复生效，5.62:1。
+  - 首页顶栏开关（深色）：圆点 `rgb(0, 0, 0)`、月亮图标 `rgb(247, 243, 234)` —— `html:not(.dark)` 守住了深色，没有被一起覆盖成 `#67676c`。
+  - 博客页（非首页）开关图标仍为 `rgb(96, 100, 122)`（`--l-muted`），未受影响。
+  - 工具箱 / 规划：开关 `40x22`、圆点 `18x18` 左偏 2px、深色下位移 20px 且太阳 `opacity 0` / 月亮 `1`；8 个图标 `24x24 ok`、与标题中心线对齐、无标签压住图标。
+  - 320px 与 390px：首页、文章、工具箱、规划均无横向溢出，两页顶栏 117px、四个页面链接仍在一行。
+- 线上核对（2026-10-01，逐项抓取，全部带时间戳绕过缓存）：
+  - `/tools/index.html`：顶栏已是 `class="switch" id="themeBtn"` + `aria-checked` + `class="iconlink" href="https://github.com/HY-Louis"`，旧的 `iconbtn` 文字按钮已消失；页内 8 条 `/icons/*.svg` 引用齐全。
+  - `/plan/index.html`：开关与 GitHub 图标同样都在。
+  - 8 个图标与 `/icons/SOURCES.txt` 全部 200；线上 `kimi.svg` 已不含纯白 `fill`（「K」是墨色、深色模式靠反相变白），首轮「Kimi 图标看不见」在线上不复现。
+  - 首页样式 `assets/style.Cp8TjdwQ.css` 里含用户加的 `html:not(.dark) .VPNavBar.home .VPSwitchAppearance .icon [class^=vpi-]{color:#67676c}`，首页顶栏开关图标的对比度修复确实上线了。
+
 
